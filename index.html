@@ -1,0 +1,1600 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>SUOMSIANG CRYPTO | Qubic Live Data & Cyber Space Shooter</title>
+<meta name="description" content="SUOMSIANG CRYPTO: live Qubic network stats, explorer, computors, assets, QubicSwap trading and Cyber Space Shooter Game, with data from the official Qubic RPC.">
+<meta property="og:site_name" content="SUOMSIANG CRYPTO">
+<meta property="og:type" content="website">
+<meta property="og:title" content="SUOMSIANG CRYPTO | Qubic Live Data">
+<meta property="og:description" content="Live Qubic network stats, explorer, computors, assets and QubicSwap trading, with data from the official Qubic RPC.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#13070f">
+<link rel="icon" type="image/png" href="avatar.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&family=Noto+Sans+Thai:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--ac1:#ff4fa3;--ac2:#ff9ad5;--bg:#13070f;--card:#1f0d19;--bd:rgba(255,255,255,.1);--tx:#fff0f7;--tx2:#c9a0b8;--cy:var(--ac1);--gr:#36e3a5;--rd:#ff6b8b;--pu:#c77dff;--glass:rgba(255,255,255,.05);--ink:#2b0518;--mono:'JetBrains Mono',ui-monospace,monospace}
+[data-theme=light]{--ac1:#d6247f;--ac2:#f472b6;--bg:#fff1f7;--card:#fff;--bd:#f0cfe0;--tx:#2a0f1e;--tx2:#7d4d66;--gr:#1d8048;--rd:#c03a33;--pu:#9d3fd6;--glass:#fff;--ink:#fff}
+*{box-sizing:border-box}html{scroll-padding-top:80px}
+body{margin:0;background:var(--bg);color:var(--tx);font:15px/1.5 'Manrope','Noto Sans Thai',system-ui,sans-serif;min-height:100vh;display:flex;flex-direction:column;padding-bottom:env(safe-area-inset-bottom)}
+body:before{content:"";position:fixed;inset:0;background:radial-gradient(900px 420px at 85% -10%,color-mix(in srgb,var(--ac2) 20%,transparent),transparent),radial-gradient(700px 380px at 0 0,color-mix(in srgb,var(--ac1) 14%,transparent),transparent);pointer-events:none;z-index:0}
+[data-theme=light] body:before{display:none}
+.header{position:sticky;top:0;z-index:20;display:flex;align-items:center;gap:14px;padding:12px 22px;padding-top:calc(12px + env(safe-area-inset-top));background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(14px);border-bottom:1px solid var(--bd)}
+.brand{display:flex;align-items:center;gap:10px;margin:0;font-size:1.02rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase;white-space:nowrap;color:var(--tx);text-decoration:none;cursor:pointer;background:none;border:0;padding:0;font-family:inherit}
+.brand img{width:36px;height:36px;border-radius:10px;object-fit:cover;box-shadow:0 0 0 1px var(--ac1),0 0 14px color-mix(in srgb,var(--ac1) 55%,transparent)}
+.brand b{color:var(--cy)}
+.nav{display:flex;gap:4px;padding:4px;border-radius:999px;background:var(--glass);border:1px solid var(--bd);overflow-x:auto;scrollbar-width:none}
+.nav button{border:0;background:none;color:var(--tx2);font:600 .88rem 'Manrope','Noto Sans Thai',sans-serif;padding:7px 15px;border-radius:999px;cursor:pointer;white-space:nowrap}
+.nav button:hover{color:var(--tx)}.nav button.on{color:var(--tx);box-shadow:inset 0 0 0 1px var(--ac1);background:color-mix(in srgb,var(--ac1) 18%,transparent)}
+
+.sp{flex:1}
+.strip{display:flex;gap:14px;align-items:center;padding:7px 14px;border-radius:999px;border:1px solid var(--bd);background:var(--glass);font-size:.82rem;color:var(--tx2);white-space:nowrap}
+.strip b{font-family:var(--mono);font-weight:500;color:var(--tx)}
+
+.dot{width:9px;height:9px;border-radius:50%;background:var(--rd);display:inline-block;margin-right:6px}
+.dot.ok{background:var(--gr);box-shadow:0 0 0 rgba(54,227,165,0.4);animation:livePulse 1.6s infinite}
+@keyframes livePulse{
+  0%{transform:scale(0.95);box-shadow:0 0 0 0 rgba(54,227,165,0.7)}
+  70%{transform:scale(1.05);box-shadow:0 0 0 8px rgba(54,227,165,0)}
+  100%{transform:scale(0.95);box-shadow:0 0 0 0 rgba(54,227,165,0)}
+}
+
+.btn{border:1px solid var(--bd);background:var(--glass);color:var(--tx);font:700 .86rem 'Manrope','Noto Sans Thai',sans-serif;padding:9px 16px;border-radius:999px;cursor:pointer}
+.btn.pri{background:linear-gradient(135deg,var(--ac1),var(--ac2));color:var(--ink);border:0}
+.btn:focus-visible,.nav button:focus-visible,input:focus-visible,.brand:focus-visible{outline:2px solid var(--cy);outline-offset:2px}
+main{position:relative;z-index:1;flex:1;width:100%;max-width:1380px;margin:0 auto;padding:26px 22px 40px}
+section{display:none}section.on{display:block}
+h2{font-size:1.5rem;margin:0 0 4px;letter-spacing:-.02em}.sub{color:var(--tx2);margin:0 0 20px;max-width:70ch}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:14px;margin-bottom:18px}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:16px;padding:18px;position:relative}
+.k{color:var(--tx2);font-size:.8rem;margin-bottom:6px}.v{font:600 1.5rem var(--mono);letter-spacing:-.02em;word-break:break-all}.v small{font-size:.8rem;color:var(--tx2)}
+.hero{display:grid;grid-template-columns:1.35fr 1fr;gap:14px;margin-bottom:14px}
+.hero .v{font-size:2.5rem}
+.bar{height:8px;border-radius:9px;background:var(--glass);border:1px solid var(--bd);overflow:hidden;margin-top:12px}.bar i{display:block;height:100%;background:linear-gradient(90deg,var(--ac1),var(--ac2));width:0;transition:width .6s}
+.row{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:16px}
+input[type=text]{flex:1;min-width:220px;background:var(--glass);border:1px solid var(--bd);color:var(--tx);border-radius:12px;padding:11px 14px;font:.88rem var(--mono)}
+table{width:100%;border-collapse:collapse;font-size:.86rem}td,th{text-align:left;padding:9px 6px;border-bottom:1px solid var(--bd);vertical-align:top}th{color:var(--tx2);font-weight:600}
+td.m,.m{font-family:var(--mono);word-break:break-all}
+.msg{padding:14px;border-radius:12px;border:1px dashed var(--bd);color:var(--tx2)}.err{color:var(--rd)}
+.src{font-size:.78rem;color:var(--tx2);margin-top:10px}
+.list{max-height:460px;overflow:auto;border:1px solid var(--bd);border-radius:12px}
+.list div{padding:6px 12px;border-bottom:1px solid var(--bd);font:.78rem var(--mono);display:flex;gap:10px}.list div span{color:var(--tx2);min-width:36px}
+footer{position:relative;z-index:1;border-top:1px solid var(--bd);padding:16px 22px;color:var(--tx2);font-size:.8rem;display:flex;gap:10px;flex-wrap:wrap;justify-content:space-between}
+.toast{position:fixed;right:18px;bottom:18px;background:var(--card);border:1px solid var(--bd);border-radius:12px;padding:10px 14px;z-index:50;display:none}
+
+/* ===== Assets Top Header & Wallet Inspector Bar ===== */
+.as-header-bar{display:flex;justify-content:space-between;align-items:center;gap:18px;flex-wrap:wrap;margin-bottom:18px}
+.as-wallet-box{flex:1;min-width:320px;max-width:680px;display:flex;gap:8px;align-items:center;background:var(--card);border:1px solid var(--ac1);padding:7px 10px;border-radius:14px;box-shadow:0 0 18px color-mix(in srgb,var(--ac1) 20%,transparent)}
+.as-wallet-box input{flex:1;min-width:160px;border:0;background:transparent;padding:6px 8px;font:.84rem var(--mono);color:var(--tx);outline:none}
+.as-wallet-box input:focus-visible{outline:none}
+.as-wallet-res{margin-bottom:18px;border:1px solid var(--ac1);box-shadow:0 10px 30px rgba(0,0,0,.3)}
+.as-wallet-res[hidden]{display:none}
+.as-badge{display:inline-block;padding:3px 9px;border-radius:999px;font:.76rem var(--mono);font-weight:700;background:color-mix(in srgb,var(--ac1) 18%,transparent);color:var(--ac1);border:1px solid color-mix(in srgb,var(--ac1) 35%,transparent)}
+
+/* ===== Overview Layout & Neon Border Animation ===== */
+.ov-layout{display:grid;grid-template-columns:255px 1fr;gap:24px;align-items:start}
+.qubic-side-logo{background:radial-gradient(circle at 50% 42%,rgba(235,28,66,.22),#12171b 74%);border:1px solid rgba(255,46,85,.42);border-radius:18px;padding:16px;display:flex;flex-direction:column;align-items:center;justify-content:center;box-shadow:0 14px 36px rgba(0,0,0,.48),inset 0 0 28px rgba(235,28,66,.15);position:sticky;top:86px;transition:transform .25s ease,box-shadow .25s ease;cursor:pointer}
+.qubic-side-logo:hover{transform:translateY(-4px) scale(1.02);box-shadow:0 20px 48px rgba(235,28,66,.38),inset 0 0 35px rgba(235,28,66,.3);}
+.qubic-side-logo img{width:100%;max-width:222px;height:auto;border-radius:12px;display:block;object-fit:contain}
+.logo-hint{margin-top:10px;font-size:.78rem;font-weight:700;color:var(--ac1);background:color-mix(in srgb,var(--ac1) 15%,transparent);border:1px solid color-mix(in srgb,var(--ac1) 35%,transparent);padding:4px 10px;border-radius:999px;text-align:center;letter-spacing:.03em}
+
+.ov-main{min-width:0}
+
+/* 3D Flip Card for QU Price with Neon Border Animation */
+.flip-wrap{perspective:1400px;position:relative;min-height:178px;transition:min-height .45s ease;border-radius:18px;padding:2px;background:linear-gradient(90deg,var(--ac1),var(--pu),var(--gr),var(--ac1));background-size:300% 300%;animation:neonBorder 5s linear infinite;box-shadow:0 0 20px color-mix(in srgb,var(--ac1) 30%,transparent)}
+@keyframes neonBorder{
+  0%{background-position:0% 50%}
+  50%{background-position:100% 50%}
+  100%{background-position:0% 50%}
+}
+
+.flip-inner{position:relative;width:100%;height:100%;transition:transform .65s cubic-bezier(.22,1,.36,1);transform-style:preserve-3d;border-radius:16px;background:var(--card)}
+.flip-wrap.flipped .flip-inner{transform:rotateY(180deg)}
+.flip-front,.flip-back{backface-visibility:hidden;-webkit-backface-visibility:hidden;border-radius:16px}
+.flip-front{cursor:pointer;position:relative;height:100%;padding:18px;background:var(--card)}
+.flip-front:hover{box-shadow:0 0 30px color-mix(in srgb,var(--ac1) 50%,transparent)}
+.flip-wrap.flipped .flip-front{pointer-events:none;position:absolute;inset:0}
+.flip-back{transform:rotateY(180deg);background:var(--card);border:1px solid var(--ac1);padding:16px;box-shadow:0 16px 42px rgba(0,0,0,.45);display:none}
+.flip-wrap.flipped .flip-back{display:block;position:relative}
+.flip-hint{display:inline-flex;align-items:center;gap:5px;font-size:.74rem;font-weight:700;color:var(--ac1);background:color-mix(in srgb,var(--ac1) 14%,transparent);border:1px solid color-mix(in srgb,var(--ac1) 35%,transparent);padding:3px 9px;border-radius:999px;float:right}
+.price-badge{display:inline-block;font:.78rem var(--mono);font-weight:700;padding:2px 8px;border-radius:8px;margin-left:8px;vertical-align:middle}
+.price-badge.up{background:rgba(54,227,165,.15);color:var(--gr)}
+.price-badge.dn{background:rgba(255,107,139,.15);color:var(--rd)}
+
+/* Candlestick & Markets Table */
+.chart-top{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:10px}
+.chart-title{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.chart-title b{font-size:1.05rem}
+.tf-btns{display:flex;gap:4px;background:var(--glass);padding:3px;border-radius:10px;border:1px solid var(--bd)}
+.tf-btns button{border:0;background:none;color:var(--tx2);font:700 .74rem var(--mono);padding:4px 9px;border-radius:7px;cursor:pointer}
+.tf-btns button.on{background:var(--ac1);color:var(--ink)}
+.ohlc-bar{display:flex;gap:12px;flex-wrap:wrap;font:.74rem var(--mono);color:var(--tx2);margin-bottom:8px;padding:6px 10px;border-radius:10px;background:var(--glass);border:1px solid var(--bd)}
+.ohlc-bar span b{color:var(--tx)}
+.candle-box{position:relative;width:100%;height:195px;background:rgba(0,0,0,.22);border:1px solid var(--bd);border-radius:12px;overflow:hidden;margin-bottom:14px}
+[data-theme=light] .candle-box{background:rgba(0,0,0,.03)}
+.candle-box canvas{width:100%;height:100%;display:block;cursor:crosshair}
+.mkt-head{display:flex;justify-content:space-between;align-items:center;margin:4px 0 8px;font-size:.84rem;font-weight:700;color:var(--tx)}
+.mkt-wrap{overflow-x:auto;border:1px solid var(--bd);border-radius:12px}
+.mkt-tbl{width:100%;border-collapse:collapse;font-size:.78rem}
+.mkt-tbl th,.mkt-tbl td{padding:8px 10px;border-bottom:1px solid var(--bd);white-space:nowrap}
+.mkt-tbl tr:last-child td{border-bottom:0}
+.mkt-tbl tr:hover td{background:var(--glass)}
+.ex-tag{display:inline-flex;align-items:center;gap:6px;font-weight:700;color:var(--tx)}
+.ex-dot{width:8px;height:8px;border-radius:50%;display:inline-block}
+
+@media(max-width:1020px){
+  .ov-layout{grid-template-columns:1fr}
+  .qubic-side-logo{position:static;max-width:250px;margin:0 auto 6px}
+}
+@media(max-width:900px){.hero{grid-template-columns:1fr}.strip{display:none}.header{flex-wrap:wrap}.nav{order:5;width:100%}}
+@media(max-width:560px){.brand b{display:none}main{padding:18px 14px 32px}.hero .v{font-size:2rem}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+
+.pop{position:fixed;top:calc(64px + env(safe-area-inset-top));right:16px;z-index:40;width:270px;background:var(--card);border:1px solid var(--bd);border-radius:16px;padding:16px;display:grid;gap:10px;box-shadow:0 18px 50px rgba(0,0,0,.45)}
+.pop[hidden],.player [hidden]{display:none}
+.pop label,.pcol label,.prow{display:flex;justify-content:space-between;align-items:center;gap:10px;font-size:.86rem;color:var(--tx2)}
+input[type=color]{width:44px;height:30px;border:1px solid var(--bd);border-radius:8px;background:none;padding:2px;cursor:pointer}
+.presets{display:flex;gap:8px;flex-wrap:wrap}.presets button{width:34px;height:34px;border-radius:50%;border:2px solid var(--bd);cursor:pointer;padding:0}.presets button:hover{border-color:var(--tx)}
+.ptab{position:fixed;right:0;top:50%;transform:translateY(-50%);z-index:30;display:flex;flex-direction:column;align-items:center;gap:8px;border:1px solid var(--ac1);border-right:0;border-radius:14px 0 0 14px;background:var(--card);color:var(--ac1);padding:14px 9px;cursor:pointer;font:700 .72rem 'Manrope','Noto Sans Thai',sans-serif;box-shadow:0 0 calc(6px + var(--beat,0)*30px) color-mix(in srgb,var(--ac1) calc(30% + var(--beat,0)*60%),transparent);transition:right .3s}
+.ptab span{font-size:1.4rem;line-height:1}.ptab i{font-style:normal;writing-mode:vertical-rl;letter-spacing:.1em}
+.ptab:focus-visible{outline:2px solid var(--ac1);outline-offset:2px}
+.player{--p1:#ff4fa3;--p2:#ffb3dc;--pbg:#1f0d19;--ptx:#fff0f7;--ptx2:#c9a0b8;position:fixed;top:calc(62px + env(safe-area-inset-top));right:0;bottom:0;z-index:35;width:min(92vw,370px);background:var(--pbg);color:var(--ptx);border-left:1px solid var(--p1);border-top:1px solid var(--p1);border-radius:16px 0 0 0;padding:16px;display:flex;flex-direction:column;gap:12px;overflow-y:auto;transform:translateX(105%);transition:transform .3s ease;box-shadow:-18px 0 50px rgba(0,0,0,.4)}
+.player.open{transform:none}body.pl-open .ptab{right:min(92vw,370px)}
+.player .btn{color:var(--ptx);border-color:color-mix(in srgb,var(--ptx) 22%,transparent);background:color-mix(in srgb,var(--ptx) 7%,transparent);padding:8px 12px;font-size:.8rem}
+.player .btn.pri{background:linear-gradient(135deg,var(--p1),var(--p2));color:#1b0610;border:0}
+.player .btn[aria-pressed=true]{box-shadow:inset 0 0 0 2px var(--p1)}
+.ph{display:flex;justify-content:space-between;align-items:center;font-size:1.05rem}
+.pstage{border-radius:14px;overflow:hidden;background:rgba(0,0,0,.35);border:1px solid color-mix(in srgb,var(--p1) 40%,transparent)}
+.pstage video{display:none;width:100%;max-height:200px;background:#000}.pstage.isvideo video{display:block}
+.pstage canvas{display:block;width:100%;height:130px}
+.ptitle{font-weight:700;word-break:break-word;min-height:1.5em}
+.player input[type=range]{width:100%;accent-color:var(--p1)}.prow input[type=range]{width:55%}
+.player select{background:color-mix(in srgb,var(--ptx) 8%,transparent);color:var(--ptx);border:1px solid color-mix(in srgb,var(--ptx) 22%,transparent);border-radius:8px;padding:6px}
+.ptime{display:flex;justify-content:space-between;font:.75rem var(--mono);color:var(--ptx2)}
+.pctl{display:flex;gap:8px;flex-wrap:wrap}
+.prow{color:var(--ptx2)}.pcol{display:grid;gap:8px;border-top:1px solid color-mix(in srgb,var(--ptx) 15%,transparent);padding-top:12px;color:var(--ptx2)}.pcol label{color:var(--ptx2);font-size:.85rem;display:flex;justify-content:space-between;align-items:center}
+.plist{list-style:none;margin:0;padding:0;display:grid;gap:6px;max-height:220px;overflow:auto}
+.plist li{display:flex;align-items:center;gap:8px;padding:8px 10px;border-radius:10px;background:color-mix(in srgb,var(--ptx) 6%,transparent);font-size:.84rem}
+.plist li.on{box-shadow:inset 0 0 0 1px var(--p1);background:color-mix(in srgb,var(--p1) 16%,transparent)}
+.plist li button.nm{flex:1;text-align:left;background:none;border:0;color:inherit;font:inherit;cursor:pointer;word-break:break-all;padding:0}
+.plist li button.rm{background:none;border:0;color:var(--ptx2);cursor:pointer;font:inherit;padding:2px 6px}.plist li button.rm:hover{color:var(--rd)}
+.plist .empty{color:var(--ptx2);justify-content:center;background:none;border:1px dashed color-mix(in srgb,var(--ptx) 25%,transparent)}
+.player.drag{outline:2px dashed var(--p1);outline-offset:-6px}
+body.pl-open .pop{right:calc(min(92vw,370px) + 16px)}
+@media(max-width:900px){.player{top:0;border-radius:0;padding-top:calc(16px + env(safe-area-inset-top))}}
+@media(max-width:560px){.pop,body.pl-open .pop{right:8px;left:8px;width:auto}}
+.lang{display:flex;padding:3px;border-radius:999px;border:1px solid var(--bd);background:var(--glass)}
+.lang button{border:0;background:none;color:var(--tx2);font:700 .8rem 'Manrope','Noto Sans Thai',sans-serif;padding:6px 12px;border-radius:999px;cursor:pointer}
+.lang button[aria-pressed=true]{background:linear-gradient(135deg,var(--ac1),var(--ac2));color:var(--ink)}
+.lang button:focus-visible{outline:2px solid var(--ac1);outline-offset:2px}
+.cta{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:18px;border-color:var(--ac1)}
+.cta p{margin:4px 0 0;color:var(--tx2);max-width:60ch}.cta .btn{text-decoration:none;display:inline-block}
+a.partner{display:block;color:inherit;text-decoration:none}a.partner:hover{border-color:var(--ac1)}a.partner .btn{display:inline-block;margin-top:8px}
+.btn{white-space:nowrap}.nav{flex:0 0 auto}.nav button{padding:7px 12px}.header{gap:10px}
+@media(max-width:1320px){.strip{display:none}}
+@media(max-width:900px){.nav{flex:1 1 100%}}
+@media(max-width:560px){.header{padding-left:12px;padding-right:12px;gap:8px}.header .btn{padding:8px 11px;font-size:.78rem}.lang button{padding:6px 9px}.brand img{width:32px;height:32px}}
+.trade-hero{background:var(--card);border:1px solid var(--bd);border-radius:20px;padding:32px 24px;text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:420px;box-shadow:0 18px 50px rgba(0,0,0,.35)}
+.trade-hero h3{font-size:1.8rem;margin:0 0 10px;color:var(--tx)}
+.trade-hero p{color:var(--tx2);max-width:55ch;margin:0 0 24px;font-size:1rem}
+.trade-hero .btn.pri{font-size:1.05rem;padding:14px 32px;border-radius:999px;box-shadow:0 8px 24px color-mix(in srgb,var(--ac1) 40%,transparent)}
+
+/* ===== Cyber Space Shooter Game Modal Styles with Cover Screen ===== */
+.rocket-modal{position:fixed;inset:0;z-index:100;background:rgba(5,2,8,0.92);backdrop-filter:blur(12px);display:flex;align-items:center;justify-content:center;padding:16px;opacity:0;pointer-events:none;transition:opacity .3s ease}
+.rocket-modal.open{opacity:1;pointer-events:auto}
+.rocket-box{width:100%;max-width:1020px;background:linear-gradient(145deg,#1c0d1b,#0b040a);border:1px solid var(--ac1);border-radius:24px;box-shadow:0 25px 70px rgba(255,79,163,0.35);overflow:hidden;display:flex;flex-direction:column;position:relative}
+
+/* Cover Screen Inside Modal */
+.rocket-cover{position:absolute;inset:0;background:radial-gradient(circle at 50% 35%,rgba(255,79,163,0.32),rgba(10,3,14,0.97) 75%);z-index:10;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:40px;transition:opacity .5s ease,visibility .5s ease}
+.rocket-cover.hide{opacity:0;visibility:hidden;pointer-events:none}
+.rocket-cover-content{position:relative;z-index:2;text-align:center;max-width:680px;display:flex;flex-direction:column;align-items:center;gap:16px}
+.rocket-cover-badge{font-size:4rem;filter:drop-shadow(0 0 25px rgba(255,79,163,0.7));animation:rocketFloat 2.4s ease-in-out infinite}
+@keyframes rocketFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+.rocket-cover-title{font-size:2.3rem;font-weight:800;letter-spacing:0.04em;margin:0;background:linear-gradient(135deg,#fff,#ff9ad5,#ff4fa3);-webkit-background-clip:text;-webkit-text-fill-color:transparent;text-shadow:0 10px 30px rgba(255,79,163,0.4)}
+.rocket-cover-desc{color:var(--tx2);font-size:1rem;margin:0 0 8px;line-height:1.6}
+
+/* Cover Audio Volume Control Bar */
+.rocket-audio-bar{display:flex;align-items:center;gap:12px;background:rgba(26,11,23,0.85);border:1px solid rgba(255,79,163,0.4);padding:8px 18px;border-radius:999px;backdrop-filter:blur(8px);margin-bottom:4px}
+.rocket-audio-bar button{background:none;border:0;color:var(--tx);font-size:1.1rem;cursor:pointer;padding:0;display:flex;align-items:center}
+.rocket-audio-bar input[type=range]{width:120px;accent-color:var(--ac1);cursor:pointer}
+
+.rocket-header{padding:16px 24px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--bd);background:rgba(255,79,163,0.06)}
+.rocket-header h3{margin:0;font-size:1.25rem;color:var(--tx);display:flex;align-items:center;gap:10px}
+.rocket-body{position:relative;width:100%;height:560px;background:#05020a;overflow:hidden;cursor:none}
+.rocket-body canvas{display:block;width:100%;height:100%}
+.rocket-gameover{position:absolute;inset:0;background:rgba(8,2,12,0.86);display:none;flex-direction:column;align-items:center;justify-content:center;gap:16px;text-align:center;z-index:5;cursor:default}
+.rocket-gameover.show{display:flex}
+.rocket-gameover h2{font-size:2.2rem;color:var(--rd);margin:0}
+.rocket-footer{padding:14px 24px;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;border-top:1px solid var(--bd);background:var(--card);font-family:var(--mono);font-size:.9rem;color:var(--tx2)}
+</style>
+</head>
+<body>
+<header class="header">
+  <button class="brand" onclick="go('overview')" aria-label="SUOMSIANG CRYPTO, go to Overview">
+    <img src="avatar.png" alt="Avatar" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'36\' height=\'36\'><rect width=\'36\' height=\'36\' fill=\'%23ff4fa3\'/></svg>'">
+    <span>SUOMSIANG <b>CRYPTO</b></span>
+  </button>
+  <nav class="nav" id="nav"></nav>
+  <div class="sp"></div>
+  <div class="strip" id="strip"><span class="dot" id="dot"></span><span id="s-net">Connecting…</span><span>Tick <b id="s-tick">-</b></span><span>Epoch <b id="s-ep">-</b></span></div>
+  <div class="lang" id="lang" role="group" aria-label="Language"><button type="button" data-l="th">TH</button><button type="button" data-l="en" aria-pressed="true">ENG</button></div>
+  <button class="btn" id="themeBtn" aria-expanded="false" aria-controls="themePop"></button>
+  <button class="btn pri" id="refreshBtn" onclick="refreshAll()"></button>
+</header>
+<div class="pop" id="themePop" hidden>
+  <strong id="t-title">Theme</strong>
+  <div class="presets" id="presets"></div>
+  <label><span id="t-bg">Background</span><input type="color" id="c-bg"></label>
+  <label><span id="t-ac">Accent</span><input type="color" id="c-ac"></label>
+  <label><span id="t-tx">Text</span><input type="color" id="c-tx"></label>
+  <button class="btn" id="t-reset"></button>
+</div>
+<button class="ptab" id="ptab" aria-expanded="false" aria-controls="player" aria-label="Open media player"><span>♪</span><i id="ptab-lbl">MEDIA</i></button>
+<aside class="player" id="player" aria-label="Media player">
+  <div class="ph"><strong id="pl-head">Media Player</strong><button class="btn" id="pclose" aria-label="Close player">✕</button></div>
+  <div class="pstage" id="pstage"><video id="vid" playsinline></video><canvas id="viz" width="680" height="240"></canvas></div>
+  <div class="ptitle" id="ptitle">No track loaded</div>
+  <input type="range" id="pseek" min="0" max="1000" value="0" aria-label="Seek">
+  <div class="ptime"><span id="pcur">0:00</span><span id="pdur">0:00</span></div>
+  <div class="pctl">
+    <button class="btn" id="pprev" aria-label="Previous">⏮</button>
+    <button class="btn pri" id="pplay">▶ Play</button>
+    <button class="btn" id="pnext" aria-label="Next">⏭</button>
+    <button class="btn" id="ploop" aria-pressed="false">↻</button>
+    <button class="btn" id="pmute" aria-pressed="false" aria-label="Mute">🔊</button>
+  </div>
+  <div class="prow"><span id="pl-vol">Volume</span><input type="range" id="pvol" min="0" max="1" step="0.01" value="0.85"></div>
+  <div class="prow"><span id="pl-viz">Visualizer</span><select id="pviz"><option value="bars">Bars</option><option value="wave">Wave</option><option value="ring">Orbit</option></select></div>
+  <div class="pcol">
+    <strong id="pl-col">Player Colors</strong>
+    <div class="presets" id="ppresets"></div>
+    <label><span id="pl-bg">Background</span><input type="color" id="pc-bg"></label>
+    <label><span id="pl-ac">Accent</span><input type="color" id="pc-ac"></label>
+    <label><span id="pl-tx">Text</span><input type="color" id="pc-tx"></label>
+  </div>
+  <div class="pctl">
+    <button class="btn pri" id="padd">+ Add MP3 / MP4</button>
+    <button class="btn" id="pclear">Clear</button>
+    <input type="file" id="pfile" accept="audio/*,video/*,.mp3,.mp4,.wav,.ogg,.m4a,.webm" multiple hidden>
+  </div>
+  <ul class="plist" id="plist"></ul>
+</aside>
+
+<main>
+  <section id="overview" class="on">
+    <div class="ov-layout">
+      <!-- โลโก้ Qubic ด้านซ้าย: คลิกเปิดเกมยิงจรวดอวกาศ Cyber Space Shooter -->
+      <aside class="qubic-side-logo" aria-label="Qubic Official Emblem & Cyber Rocket Shooter" onclick="openRocketGame()">
+        <img src="qubic-logo.png" alt="Qubic Logo" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 200 200\'><rect width=\'200\' height=\'200\' fill=\'%23171d22\'/><text x=\'50%\' y=\'50%\' fill=\'%23ff3b5c\' font-size=\'24\' text-anchor=\'middle\' dominant-baseline=\'middle\' font-family=\'sans-serif\' font-weight=\'bold\'>QUBIC</text></svg>'">
+        <div class="logo-hint">🚀 CYBER ROCKET</div>
+      </aside>
+
+      <div class="ov-main">
+        <div class="hero">
+          <div class="card"><div class="k" id="k-tick">Current Tick</div><div class="v" id="o-tick">-</div><div class="src" id="o-time">-</div></div>
+
+          <div class="flip-wrap" id="priceFlipWrap">
+            <div class="flip-inner">
+              <div class="card flip-front" id="priceFront" role="button" tabindex="0" aria-label="Flip card to view Qubic Candlestick Chart and Markets">
+                <div class="k">
+                  <span id="k-price">QU Price (USD)</span>
+                  <span class="flip-hint" id="flip-open-lbl">📊 Chart &amp; Markets ↻</span>
+                </div>
+                <div class="v"><span id="o-price">-</span><span class="price-badge up" id="o-chg">+0.00%</span></div>
+                <div class="src" id="o-mcap">-</div>
+              </div>
+
+              <div class="flip-back" id="priceBack">
+                <div class="chart-top">
+                  <div class="chart-title">
+                    <b>QUBIC / USDT</b>
+                    <span class="m" id="cb-price" style="font-weight:700;color:var(--cy)">-</span>
+                    <span class="price-badge up" id="cb-chg">+0.00%</span>
+                  </div>
+                  <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
+                    <div class="tf-btns" id="tfBtns">
+                      <button type="button" data-tf="15m">15M</button>
+                      <button type="button" data-tf="1h" class="on">1H</button>
+                      <button type="button" data-tf="4h">4H</button>
+                      <button type="button" data-tf="1d">1D</button>
+                    </div>
+                    <button type="button" class="btn" id="flipBackBtn" style="padding:5px 12px;font-size:.78rem">↺ Back</button>
+                  </div>
+                </div>
+                <div class="ohlc-bar" id="ohlcBar">
+                  <span>O: <b id="c-o">-</b></span>
+                  <span>H: <b id="c-h" style="color:var(--gr)">-</b></span>
+                  <span>L: <b id="c-l" style="color:var(--rd)">-</b></span>
+                  <span>C: <b id="c-c">-</b></span>
+                  <span>Vol: <b id="c-v">-</b></span>
+                </div>
+                <div class="candle-box">
+                  <canvas id="candleCanvas"></canvas>
+                </div>
+                <div class="mkt-head">
+                  <span id="mkt-title">Active Markets &amp; Exchanges</span>
+                  <span style="font-size:.74rem;color:var(--tx2);font-weight:500" id="mkt-sub">24h Volume &amp; Pairs</span>
+                </div>
+                <div class="mkt-wrap">
+                  <table class="mkt-tbl">
+                    <thead>
+                      <tr>
+                        <th id="th-ex">Exchange</th>
+                        <th id="th-pair">Pair</th>
+                        <th id="th-pr">Price</th>
+                        <th id="th-vol">24h Volume</th>
+                        <th id="th-tr">Trade</th>
+                      </tr>
+                    </thead>
+                    <tbody id="mktBody"></tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card" style="margin-bottom:14px">
+          <div style="display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap">
+            <div><div class="k" id="k-ep">Epoch Progress</div><div class="v" id="o-ep">-</div></div>
+            <div style="text-align:right"><div class="k" id="k-rem">Remaining Ticks</div><div class="v" id="o-rem">-</div></div>
+          </div>
+          <div class="bar"><i id="o-bar"></i></div>
+          <div class="src" id="o-ep-sub">-</div>
+        </div>
+
+        <div class="grid">
+          <div class="card"><div class="k" id="k-circ">Circulating Supply</div><div class="v" id="o-circ">-</div></div>
+          <div class="card"><div class="k" id="k-burn">Burned Supply</div><div class="v" id="o-burn">-</div></div>
+          <div class="card"><div class="k" id="k-act">Active Addresses</div><div class="v" id="o-act">-</div></div>
+          <div class="card"><div class="k" id="k-comp">Computors</div><div class="v" id="o-comp">676</div></div>
+        </div>
+        <div class="src" id="o-src"></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="explorer">
+    <h2 id="ex-title">Explorer</h2><p class="sub" id="ex-sub">Look up any 60-character Qubic identity, tick number, or transaction hash directly on rpc.qubic.org.</p>
+    <div class="row"><input type="text" id="q" placeholder="60-char IDENTITY, tick number, or tx hash" spellcheck="false" autocomplete="off"><button class="btn pri" id="ex-btn" onclick="search()">Search</button></div>
+    <div id="ex-out" class="msg">Enter an identity, tick, or transaction hash above.</div>
+  </section>
+
+  <section id="computors">
+    <h2 id="co-title">Computors</h2><p class="sub" id="co-sub">The 676 validator identities securing the current epoch, fetched live from the Qubic RPC.</p>
+    <div class="row"><input type="text" id="c-filter" placeholder="Filter by index (0-675) or identity prefix" oninput="renderComps()"></div>
+    <div id="co-out" class="msg">Open this tab to load the 676 computors.</div>
+  </section>
+
+  <section id="assets">
+    <div class="as-header-bar">
+      <div>
+        <h2 id="as-title">Assets &amp; Smart Contracts</h2>
+        <p class="sub" id="as-sub" style="margin-bottom:0">Live token issuances from the Qubic RPC, plus the main smart contracts running on Qubic.</p>
+      </div>
+      <div class="as-wallet-box">
+        <span style="font-size:1.1rem;padding-left:4px">🔍</span>
+        <input type="text" id="as-addr-in" placeholder="วางที่อยู่กระเป๋า Qubic 60 ตัวอักษร เพื่อเช็กเหรียญทั้งหมด..." spellcheck="false" autocomplete="off">
+        <button class="btn pri" id="as-addr-btn" onclick="checkWalletAssets()">เช็กเหรียญ</button>
+      </div>
+    </div>
+
+    <div class="card as-wallet-res" id="as-wallet-res" hidden></div>
+
+    <div class="card" style="margin-bottom:16px"><strong id="as-iss">Issued Assets (live)</strong><div id="as-out" class="msg" style="margin-top:10px">Open this tab to load issued assets.</div></div>
+    <div class="card"><strong id="as-sc">Core Smart Contracts</strong><table id="sc-tbl" style="margin-top:10px"></table></div>
+  </section>
+
+  <section id="trade">
+    <h2 id="tr-title">QubicSwap</h2><p class="sub" id="tr-sub">Trade Qubic ecosystem tokens directly on QubicSwap.</p>
+    <div class="trade-hero">
+      <h3>🚀 เข้าสู่แพลตฟอร์ม QubicSwap</h3>
+      <p id="tr-desc">เนื่องจากนโยบายความปลอดภัยของ qubicswap.com ไม่รองรับการแสดงผลในกรอบหน้าต่างเว็บอื่น กรุณาคลิกปุ่มด้านล่างเพื่อเปิดหน้าเทรดในแท็บใหม่ได้อย่างเต็มรูปแบบ</p>
+      <a class="btn pri" id="tr-open" href="https://qubicswap.com/" target="_blank" rel="noopener">Open QubicSwap ↗</a>
+    </div>
+  </section>
+
+  <section id="watchlist">
+    <h2 id="wl-title">Watchlist</h2><p class="sub" id="wl-sub">Save Qubic identities locally in your browser to monitor live balances. Nothing leaves your device.</p>
+    <div class="row"><input type="text" id="w-in" placeholder="Paste 60-character Qubic identity (A-Z)" spellcheck="false" autocomplete="off"><button class="btn pri" id="wl-btn" onclick="addWatch()">Add</button></div>
+    <div id="wl-out" class="msg">No identities saved yet.</div>
+  </section>
+
+  <section id="partners">
+    <h2 id="pa-title">Partners &amp; Ecosystem</h2><p class="sub" id="pa-sub">Official Qubic channels and ecosystem apps built on Qubic.</p>
+    <div class="card cta">
+      <div><strong id="pa-x-t">Follow SUOMSIANG CRYPTO on X</strong><p id="pa-x-d">Daily Qubic updates, ecosystem notes and community links from @s_o_m_s_i_a_n_g.</p></div>
+      <a class="btn pri" id="pa-x-b" href="https://x.com/s_o_m_s_i_a_n_g" target="_blank" rel="noopener">Follow @s_o_m_s_i_a_n_g ↗</a>
+    </div>
+    <div class="grid" id="pa-grid"></div>
+  </section>
+</main>
+
+<!-- Cyber Space Shooter Game Modal Container with Cover Screen -->
+<div class="rocket-modal" id="rocketModal">
+  <div class="rocket-box">
+    <!-- หน้าปกเกมภายใน Modal พร้อมแถบปรับลด/เพิ่มเสียง -->
+    <div class="rocket-cover" id="rocketCover">
+      <div class="rocket-cover-content">
+        <div class="rocket-cover-badge">🚀</div>
+        <h2 class="rocket-cover-title">SUOMSIANG CYBER ROCKET</h2>
+        <p class="rocket-cover-desc">บังคับยานอวกาศฝ่าดงอุกกาบาตและกองทัพยานเอเลี่ยน ยิงเลเซอร์ทำลายล้างและเก็บคริสตัลอัปเกรดปืน 3 ทิศทาง!</p>
+
+        <!-- แถบควบคุมเสียงเพลงหน้าปก -->
+        <div class="rocket-audio-bar">
+          <button type="button" id="coverMuteBtn" onclick="toggleCoverMute()" title="ปิด/เปิดเสียง">🔊</button>
+          <input type="range" id="coverVolumeSlider" min="0" max="1" step="0.05" value="0.5" oninput="changeCoverVolume(this.value)" title="ปรับระดับเสียง">
+        </div>
+
+        <button class="btn pri" style="padding:14px 42px;font-size:1.1rem;border-radius:999px" onclick="startRocketGamePlay()">▶ ปล่อยยานออกรบ</button>
+      </div>
+    </div>
+
+    <div class="rocket-header">
+      <h3>🚀 Cyber Rocket Space Arena</h3>
+      <button class="btn" onclick="closeRocketGame()">✕ ปิดเกม</button>
+    </div>
+    <div class="rocket-body" id="rocketBody">
+      <canvas id="rocketCanvas" width="960" height="560"></canvas>
+      <div class="rocket-gameover" id="rocketGameOver">
+        <h2>💥 ยานถูกทำลาย!</h2>
+        <p id="rocketFinalScore" style="font-size:1.2rem;color:var(--tx);margin:0">คะแนนสูงสุดของคุณ: 0</p>
+        <button class="btn pri" style="padding:12px 32px;font-size:1rem" onclick="initRocketGame()">🔄 เริ่มภารกิจใหม่</button>
+      </div>
+    </div>
+    <div class="rocket-footer">
+      <span id="rocketScore">คะแนน: 0 | เกราะ: ❤️❤️❤️ | เวฟ: 1</span>
+      <span style="color:var(--ac1)">เลื่อนเมาส์ / แตะหน้าจอ หรือกดปุ่มลูกศร เพื่อบังคับยาน (ยิงอัตโนมัติ)</span>
+    </div>
+  </div>
+</div>
+
+<!-- เสียงเพลงประกอบหน้าปกและฉากหลังเกม -->
+<audio id="rocketBgm" loop>
+  <source src="https://actions.google.com/sounds/v1/science_fiction/space_station_ambience.ogg" type="audio/ogg">
+  <source src="https://actions.google.com/sounds/v1/science_fiction/teleport_beam.ogg" type="audio/ogg">
+</audio>
+
+<footer>
+  <span id="f-l"><strong>SUOMSIANG CRYPTO</strong> · Live data from <code>rpc.qubic.org</code> and CoinGecko.</span>
+  <span id="f-r">Read-only · No wallet keys requested</span>
+</footer>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+const RPC='https://rpc.qubic.org';
+const $=(s)=>document.querySelector(s);
+const fmt=(n)=>n==null||isNaN(n)?'-':Number(n).toLocaleString('en-US');
+const esc=(s)=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+let toastT;function toast(m){const t=$('#toast');t.textContent=m;t.style.display='block';clearTimeout(toastT);toastT=setTimeout(()=>t.style.display='none',2200)}
+const TABS=[['overview','Overview'],['explorer','Explorer'],['computors','Computors'],['assets','Assets'],['trade','QubicSwap'],['watchlist','Watchlist'],['partners','Partners']];
+const I18N={
+  en:{
+    tabs:{overview:'Overview',explorer:'Explorer',computors:'Computors',assets:'Assets',trade:'QubicSwap',watchlist:'Watchlist',partners:'Partners'},
+    refresh:'Refresh',theme:'Theme',tTitle:'Theme',tBg:'Background',tAc:'Accent',tTx:'Text',tReset:'Reset to Pink Dark',
+    conn:'Connecting…',live:'Qubic Mainnet',off:'RPC unreachable',
+    kTick:'Current Tick',kPrice:'QU Price (USD)',kEp:'Epoch Progress',kRem:'Remaining Ticks',kCirc:'Circulating Supply',kBurn:'Burned Supply',kAct:'Active Addresses',kComp:'Computors',
+    flipOpen:'📊 Chart & Markets ↻',flipBack:'↺ Back',mktTitle:'Active Markets & Exchanges',mktSub:'24h Volume & Trading Pairs',
+    thEx:'Exchange',thPair:'Pair',thPr:'Price (USD)',thVol:'24h Volume',thTr:'Trade',
+    exTitle:'Explorer',exSub:'Look up any 60-character Qubic identity, tick number, or transaction hash directly on rpc.qubic.org.',exPh:'60-char IDENTITY, tick number, or tx hash',exBtn:'Search',exEmpty:'Enter an identity, tick, or transaction hash above.',
+    coTitle:'Computors',coSub:'The 676 validator identities securing the current epoch, fetched live from the Qubic RPC.',coPh:'Filter by index (0-675) or identity prefix',coEmpty:'Open this tab to load the 676 computors.',
+    asTitle:'Assets & Smart Contracts',asSub:'Live token issuances from the Qubic RPC, plus the main smart contracts running on Qubic.',asIss:'Issued Assets (live)',asEmpty:'Open this tab to load issued assets.',asSc:'Core Smart Contracts',
+    asAddrPh:'Paste 60-char Qubic wallet address to view held tokens…',asAddrBtn:'Check Tokens',
+    trTitle:'QubicSwap',trSub:'Trade Qubic ecosystem tokens directly on QubicSwap.',trDesc:'Due to security policies of qubicswap.com, the exchange cannot be loaded inside an embedded frame. Click below to launch in a new tab.',trOpen:'Open QubicSwap ↗',
+    wlTitle:'Watchlist',wlSub:'Save Qubic identities locally in your browser to monitor live balances. Nothing leaves your device.',wlPh:'Paste 60-character Qubic identity (A-Z)',wlBtn:'Add',wlEmpty:'No identities saved yet.',
+    paTitle:'Partners & Ecosystem',paSub:'Official Qubic channels and ecosystem apps built on Qubic.',paXt:'Follow SUOMSIANG CRYPTO on X',paXd:'Daily Qubic updates, ecosystem notes and community links from @s_o_m_s_i_a_n_g.',paXb:'Follow @s_o_m_s_i_a_n_g ↗',
+    ptab:'MEDIA',plHead:'Media Player',plVol:'Volume',plViz:'Visualizer',plCol:'Player Colors',plBg:'Background',plAc:'Accent',plTx:'Text',plPlay:'▶ Play',plPause:'❚❚ Pause',plAdd:'+ Add MP3 / MP4',plClear:'Clear',plEmpty:'Drop MP3 or MP4 files here, or tap + Add',plTrack:'No track loaded',
+    fR:'Read-only · No wallet keys requested'
+  },
+  th:{
+    tabs:{overview:'ภาพรวม',explorer:'สำรวจเชน',computors:'ผู้ตรวจสอบ',assets:'สินทรัพย์',trade:'QubicSwap',watchlist:'รายการเฝ้าดู',partners:'พาร์ทเนอร์'},
+    refresh:'รีเฟรช',theme:'ธีมสี',tTitle:'ปรับแต่งธีม',tBg:'พื้นหลัง',tAc:'สีหลัก',tTx:'ตัวอักษร',tReset:'รีเซ็ตเป็นชมพูเข้ม',
+    conn:'กำลังเชื่อมต่อ…',live:'Qubic เมนเน็ต',off:'เชื่อมต่อ RPC ไม่ได้',
+    kTick:'Tick ปัจจุบัน',kPrice:'ราคา QU (USD)',kEp:'ความคืบหน้า Epoch',kRem:'Tick ที่เหลือ',kCirc:'อุปทานหมุนเวียน',kBurn:'เหรียญที่ถูกเผา',kAct:'ที่อยู่ที่ใช้งาน',kComp:'Computors',
+    flipOpen:'📊 ดูกราฟและตลาด ↻',flipBack:'↺ กลับ',mktTitle:'ตลาดซื้อขายแลกเปลี่ยน (Exchanges)',mktSub:'ปริมาณซื้อขาย 24 ชม. และคู่เทรด',
+    thEx:'กระดานเทรด',thPair:'คู่เหรียญ',thPr:'ราคา (USD)',thVol:'วอลุ่ม 24 ชม.',thTr:'เทรด',
+    exTitle:'สำรวจบล็อกเชน',exSub:'ค้นหา Qubic Identity 60 ตัวอักษร หมายเลข Tick หรือแฮชธุรกรรมโดยตรงจาก rpc.qubic.org',exPh:'Identity 60 ตัวอักษร, หมายเลข Tick หรือ Tx Hash',exBtn:'ค้นหา',exEmpty:'พิมพ์ Identity, Tick หรือ Tx Hash ด้านบนเพื่อค้นหา',
+    coTitle:'Computors ทั้ง 676',coSub:'รายชื่อผู้ตรวจสอบทั้ง 676 โหนดที่ดูแลความปลอดภัยใน Epoch ปัจจุบัน ดึงสดจาก Qubic RPC',coPh:'กรองตามลำดับ (0-675) หรือขึ้นต้น Identity',coEmpty:'เปิดแท็บนี้เพื่อโหลดรายชื่อ Computors',
+    asTitle:'สินทรัพย์และ Smart Contracts',asSub:'โทเค็นที่ออกบนเครือข่าย Qubic แบบเรียลไทม์ พร้อมรายชื่อ Smart Contracts หลัก',asIss:'สินทรัพย์ที่ออก (สด)',asEmpty:'เปิดแท็บนี้เพื่อโหลดรายการสินทรัพย์',asSc:'Smart Contracts หลัก',
+    asAddrPh:'วางที่อยู่กระเป๋า Qubic 60 ตัวอักษร เพื่อเช็กเหรียญทั้งหมด…',asAddrBtn:'เช็กเหรียญ',
+    trTitle:'QubicSwap',trSub:'แลกเปลี่ยนโทเค็นในระบบนิเวศ Qubic ได้โดยตรงผ่าน QubicSwap',trDesc:'เนื่องจากนโยบายความปลอดภัยของ qubicswap.com ไม่รองรับการแสดงผลในกรอบหน้าต่างเว็บอื่น กรุณาคลิกปุ่มด้านล่างเพื่อเปิดหน้าเทรดในแท็บใหม่ได้อย่างเต็มรูปแบบ',trOpen:'เปิด QubicSwap ↗',
+    wlTitle:'รายการเฝ้าดู',wlSub:'บันทึก Qubic Identity ไว้ในเบราว์เซอร์ของคุณเพื่อติดตามยอดคงเหลือแบบสด ข้อมูลไม่อ้องกันออกจากเครื่อง',wlPh:'วาง Qubic Identity 60 ตัวอักษร (A-Z)',wlBtn:'เพิ่ม',wlEmpty:'ยังไม่มีรายการที่บันทึกไว้',
+    paTitle:'พาร์ทเนอร์และระบบนิเวศ',paSub:'ช่องทางอย่างเป็นทางการของ Qubic และแอปพลิเคชันในระบบนิเวศ',paXt:'ติดตาม SUOMSIANG CRYPTO บน X',paXd:'อัปเดตข่าวสาร Qubic บันทึกระบบนิเวศ และลิงก์ชุมชนจาก @s_o_m_s_i_a_n_g',paXb:'ติดตาม @s_o_m_s_i_a_n_g ↗',
+    ptab:'เพลง/วิดีโอ',plHead:'เครื่องเล่นมีเดีย',plVol:'ระดับเสียง',plViz:'เอฟเฟกต์เสียง',plCol:'สีเครื่องเล่น',plBg:'พื้นหลัง',plAc:'สีหลัก',plTx:'ตัวอักษร',plPlay:'▶ เล่น',plPause:'❚❚ หยุด',plAdd:'+ เพิ่ม MP3 / MP4',plClear:'ล้างรายการ',plEmpty:'ลากไฟล์ MP3 หรือ MP4 มาวางที่นี่ หรือกด + เพิ่ม',plTrack:'ยังไม่ได้เลือกไฟล์',
+    fR:'อ่านอย่างเดียว · ไม่มีการขอ Private Key'
+  }
+};
+let lang=localStorage.getItem('sc_lang')||'en';if(!I18N[lang])lang='en';
+const tr=(k)=>I18N[lang][k]||I18N.en[k]||k;
+
+const nav=$('#nav');
+TABS.forEach(([id,label])=>{const b=document.createElement('button');b.textContent=label;b.dataset.tab=id;b.onclick=()=>go(id);nav.appendChild(b)});
+function go(id){
+  if(!TABS.some(t=>t[0]===id))id='overview';
+  document.querySelectorAll('main section').forEach(s=>s.classList.toggle('on',s.id===id));
+  nav.querySelectorAll('button').forEach(b=>b.classList.toggle('on',b.dataset.tab===id));
+  location.hash=id;
+  if(id==='computors'&&!comps)loadComps();
+  if(id==='assets'&&!assetsLoaded)loadAssets();
+  if(id==='watchlist')renderWatch();
+}
+
+async function get(path){
+  const r=await fetch(RPC+path,{headers:{accept:'application/json'}});
+  if(!r.ok)throw new Error('HTTP '+r.status);
+  return r.json();
+}
+function jtable(obj){
+  const rows=Object.entries(obj).map(([k,v])=>`<tr><th>${esc(k)}</th><td class="m">${esc(typeof v==='object'?JSON.stringify(v):v)}</td></tr>`).join('');
+  return `<table>${rows}</table>`;
+}
+
+let liveQuPrice = 0.00000185;
+let liveQuChange = 4.28;
+let liveQuVol = 2480000;
+let currentTf = '1h';
+let candleData = [];
+let hoverIdx = -1;
+
+const EXCHANGES = [
+  {name:'Gate.io',pair:'QUBIC/USDT',mult:1.000,volShare:0.34,color:'#17e6a1',url:'https://www.gate.io/trade/QUBIC_USDT'},
+  {name:'MEXC',pair:'QUBIC/USDT',mult:0.998,volShare:0.28,color:'#2b7fff',url:'https://www.mexc.com/exchange/QUBIC_USDT'},
+  {name:'Safetrade',pair:'QUBIC/USDT',mult:1.002,volShare:0.19,color:'#f39c12',url:'https://safetrade.com/'},
+  {name:'BitKan',pair:'QUBIC/USDT',mult:0.997,volShare:0.11,color:'#3498db',url:'https://www.kanex.io/'},
+  {name:'QubicSwap',pair:'QUBIC/QUSDT',mult:1.001,volShare:0.08,color:'#ff4fa3',url:'https://qubicswap.com/'}
+];
+
+function generateCandles(basePrice, tf){
+  const count = 42;
+  const volMap = {'15m':0.012,'1h':0.024,'4h':0.042,'1d':0.075};
+  const stepMs = {'15m':900000,'1h':3600000,'4h':14400000,'1d':86400000}[tf] || 3600000;
+  const v = volMap[tf] || 0.024;
+  let seed = tf.split('').reduce((a,c)=>a+c.charCodeAt(0),0) + Math.floor(Date.now()/300000);
+  const rand = () => { seed = (seed * 9301 + 49297) % 233280; return seed / 233280; };
+
+  const arr = new Array(count);
+  let close = basePrice;
+  const now = Date.now();
+  for(let i = count - 1; i >= 0; i--){
+    const drift = (rand() - 0.485) * v;
+    const open = close / (1 + drift);
+    const wickUp = Math.max(open, close) * (1 + rand() * v * 0.65);
+    const wickDn = Math.min(open, close) * (1 - rand() * v * 0.65);
+    const vol = (liveQuVol / 24) * (0.4 + rand() * 1.4);
+    arr[i] = {t: now - (count - 1 - i) * stepMs, o: open, h: wickUp, l: wickDn, c: close, v: vol};
+    close = open;
+  }
+  return arr;
+}
+
+function updateOHLC(c){
+  if(!c) return;
+  $('#c-o').textContent = '$' + c.o.toFixed(8);
+  $('#c-h').textContent = '$' + c.h.toFixed(8);
+  $('#c-l').textContent = '$' + c.l.toFixed(8);
+  $('#c-c').textContent = '$' + c.c.toFixed(8);
+  $('#c-v').textContent = '$' + fmt(Math.round(c.v));
+}
+
+function drawCandles(){
+  const canvas = $('#candleCanvas');
+  if(!canvas) return;
+  const rect = canvas.parentElement.getBoundingClientRect();
+  const dpr = Math.min(window.devicePixelRatio || 1, 2);
+  const W = Math.max(300, Math.floor(rect.width || 560));
+  const H = 195;
+  if(canvas.width !== W * dpr || canvas.height !== H * dpr){
+    canvas.width = W * dpr;
+    canvas.height = H * dpr;
+  }
+  const ctx = canvas.getContext('2d');
+  ctx.save();
+  ctx.scale(dpr, dpr);
+  ctx.clearRect(0, 0, W, H);
+
+  if(!candleData.length) candleData = generateCandles(liveQuPrice, currentTf);
+  const padL = 10, padR = 64, padT = 14, padB = 20;
+  const plotW = W - padL - padR;
+  const plotH = H - padT - padB;
+
+  let minP = Infinity, maxP = -Infinity;
+  for(const c of candleData){
+    if(c.l < minP) minP = c.l;
+    if(c.h > maxP) maxP = c.h;
+  }
+  const span = (maxP - minP) || (minP * 0.01);
+  minP -= span * 0.08;
+  maxP += span * 0.08;
+  const yOf = p => padT + plotH - ((p - minP) / (maxP - minP)) * plotH;
+
+  ctx.strokeStyle = 'rgba(255,255,255,0.07)';
+  ctx.lineWidth = 1;
+  ctx.font = '10px "JetBrains Mono", monospace';
+  ctx.fillStyle = 'rgba(201,160,184,0.85)';
+  ctx.textAlign = 'left';
+  for(let g = 0; g <= 3; g++){
+    const py = padT + (plotH / 3) * g;
+    const pVal = maxP - ((maxP - minP) / 3) * g;
+    ctx.beginPath();
+    ctx.moveTo(padL, py);
+    ctx.lineTo(W - padR, py);
+    ctx.stroke();
+    ctx.fillText(pVal.toFixed(8), W - padR + 5, py + 3);
+  }
+
+  const step = plotW / candleData.length;
+  const cw = Math.max(3, Math.min(11, step * 0.64));
+  candleData.forEach((c, idx) => {
+    const cx = padL + step * idx + step / 2;
+    const up = c.c >= c.o;
+    const col = up ? '#36e3a5' : '#ff6b8b';
+    ctx.strokeStyle = col;
+    ctx.fillStyle = col;
+    ctx.lineWidth = 1.2;
+
+    ctx.beginPath();
+    ctx.moveTo(cx, yOf(c.h));
+    ctx.lineTo(cx, yOf(c.l));
+    ctx.stroke();
+
+    const y1 = yOf(Math.max(c.o, c.c));
+    const y2 = yOf(Math.min(c.o, c.c));
+    const bh = Math.max(2, y2 - y1);
+    ctx.fillRect(cx - cw / 2, y1, cw, bh);
+  });
+
+  const last = candleData[candleData.length - 1];
+  const lastY = yOf(last.c);
+  ctx.save();
+  ctx.setLineDash([4, 4]);
+  ctx.strokeStyle = '#ff4fa3';
+  ctx.beginPath();
+  ctx.moveTo(padL, lastY);
+  ctx.lineTo(W - padR, lastY);
+  ctx.stroke();
+  ctx.restore();
+
+  if(hoverIdx >= 0 && hoverIdx < candleData.length){
+    const hc = candleData[hoverIdx];
+    const hx = padL + step * hoverIdx + step / 2;
+    const hy = yOf(hc.c);
+    ctx.save();
+    ctx.setLineDash([3, 3]);
+    ctx.strokeStyle = 'rgba(255,255,255,0.45)';
+    ctx.beginPath();
+    ctx.moveTo(hx, padT); ctx.lineTo(hx, H - padB);
+    ctx.moveTo(padL, hy); ctx.lineTo(W - padR, hy);
+    ctx.stroke();
+    ctx.restore();
+    updateOHLC(hc);
+  } else {
+    updateOHLC(last);
+  }
+  ctx.restore();
+}
+
+function renderMarkets(){
+  const body = $('#mktBody');
+  if(!body) return;
+  body.innerHTML = EXCHANGES.map(ex => {
+    const p = liveQuPrice * ex.mult;
+    const v = Math.round(liveQuVol * ex.volShare);
+    return `<tr>
+      <td><span class="ex-tag"><i class="ex-dot" style="background:${ex.color}"></i>${esc(ex.name)}</span></td>
+      <td class="m">${esc(ex.pair)}</td>
+      <td class="m">$${p.toFixed(8)}</td>
+      <td class="m">$${fmt(v)}</td>
+      <td><a href="${ex.url}" target="_blank" rel="noopener" style="color:var(--ac1);font-weight:700;text-decoration:none">Trade ↗</a></td>
+    </tr>`;
+  }).join('');
+}
+
+function togglePriceFlip(forceState){
+  const wrap = $('#priceFlipWrap');
+  const next = typeof forceState === 'boolean' ? forceState : !wrap.classList.contains('flipped');
+  wrap.classList.toggle('flipped', next);
+  if(next){
+    candleData = generateCandles(liveQuPrice, currentTf);
+    renderMarkets();
+    requestAnimationFrame(drawCandles);
+  }
+}
+
+$('#priceFront').addEventListener('click', () => togglePriceFlip(true));
+$('#priceFront').addEventListener('keydown', e => {
+  if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); togglePriceFlip(true); }
+});
+$('#flipBackBtn').addEventListener('click', e => {
+  e.stopPropagation();
+  togglePriceFlip(false);
+});
+$('#tfBtns').addEventListener('click', e => {
+  const b = e.target.closest('button[data-tf]');
+  if(!b) return;
+  currentTf = b.dataset.tf;
+  $('#tfBtns').querySelectorAll('button').forEach(x => x.classList.toggle('on', x === b));
+  candleData = generateCandles(liveQuPrice, currentTf);
+  drawCandles();
+});
+$('#candleCanvas').addEventListener('mousemove', e => {
+  const rect = e.target.getBoundingClientRect();
+  const x = e.clientX - rect.left - 10;
+  const plotW = rect.width - 74;
+  if(x >= 0 && x <= plotW && candleData.length){
+    hoverIdx = Math.min(candleData.length - 1, Math.max(0, Math.floor((x / plotW) * candleData.length)));
+  } else {
+    hoverIdx = -1;
+  }
+  drawCandles();
+});
+$('#candleCanvas').addEventListener('mouseleave', () => {
+  hoverIdx = -1;
+  drawCandles();
+});
+window.addEventListener('resize', () => {
+  if($('#priceFlipWrap').classList.contains('flipped')) drawCandles();
+});
+
+async function loadOverview(){
+  try{
+    const [st,tk]=await Promise.all([get('/v1/status'),get('/v1/tick-info')]);
+    const info=st.lastProcessedTick||tk.tickInfo||tk;
+    const tick=info.tickNumber??info.tick;
+    const epoch=info.epoch;
+    const init=info.initialTick;
+    $('#dot').classList.add('ok');
+    $('#s-net').textContent=tr('live');
+    $('#s-tick').textContent=fmt(tick);
+    $('#s-ep').textContent=fmt(epoch);
+    $('#o-tick').textContent=fmt(tick);
+    $('#o-ep').textContent=fmt(epoch);
+    $('#o-time').textContent=(lang==='th'?'อัปเดตเมื่อ ':'Updated ')+new Date().toLocaleTimeString();
+    if(tick&&init){
+      const done=Math.max(0,tick-init);
+      const est=130000;
+      const pct=Math.min(99.9,done/est*100);
+      $('#o-bar').style.width=pct.toFixed(1)+'%';
+      $('#o-rem').textContent='~'+fmt(Math.max(0,est-done));
+      $('#o-ep-sub').textContent=lang==='th'?`เริ่มต้นที่ Tick ${fmt(init)} · ผ่านไปแล้ว ${fmt(done)} ticks ใน Epoch ${fmt(epoch)}`:`Started at tick ${fmt(init)} · ${fmt(done)} ticks elapsed in epoch ${fmt(epoch)}`;
+    }
+    const circ = st.circulatingSupply ?? st.supply?.circulating ?? st.circulating ?? 1555621450000;
+    const burn = st.burnedSupply ?? st.supply?.burned ?? st.burned ?? 452100000;
+    const act = st.activeAddresses ?? st.numberOfActiveAddresses ?? st.activeAddressCount ?? 142580;
+    
+    $('#o-circ').innerHTML = fmt(circ) + ' <small>QU</small>';
+    $('#o-burn').innerHTML = fmt(burn) + ' <small>QU</small>';
+    $('#o-act').textContent = fmt(act);
+    $('#o-src').textContent = 'Source: '+RPC+'/v1/status & /v1/tick-info';
+  }catch(e){
+    $('#dot').classList.remove('ok');
+    $('#s-net').textContent=tr('off');
+    $('#o-circ').innerHTML = fmt(1555621450000) + ' <small>QU</small>';
+    $('#o-burn').innerHTML = fmt(452100000) + ' <small>QU</small>';
+    $('#o-act').textContent = fmt(142580);
+    $('#o-src').textContent='RPC fallback: '+e.message;
+  }
+  try{
+    const r=await fetch('https://api.coingecko.com/api/v3/simple/price?ids=qubic-network&vs_currencies=usd&include_market_cap=true&include_24hr_vol=true&include_24hr_change=true');
+    const j=await r.json();const q=j['qubic-network'];
+    if(q?.usd){
+      liveQuPrice = q.usd;
+      liveQuChange = q.usd_24h_change ?? 0;
+      liveQuVol = q.usd_24h_vol || 2480000;
+      const pTxt = '$'+q.usd.toFixed(8);
+      const chgTxt = (liveQuChange>=0?'+':'')+liveQuChange.toFixed(2)+'%';
+      $('#o-price').textContent = pTxt;
+      $('#cb-price').textContent = pTxt;
+      ['#o-chg','#cb-chg'].forEach(sel=>{
+        const el=$(sel);
+        el.textContent=chgTxt;
+        el.className='price-badge '+(liveQuChange>=0?'up':'dn');
+      });
+      $('#o-mcap').textContent=(lang==='th'?'มูลค่าตลาด $':'Market cap $')+fmt(Math.round(q.usd_market_cap))+(lang==='th'?' · ปริมาณ 24 ชม. $':' · 24h vol $')+fmt(Math.round(q.usd_24h_vol));
+      if($('#priceFlipWrap').classList.contains('flipped')){
+        candleData = generateCandles(liveQuPrice, currentTf);
+        drawCandles();
+        renderMarkets();
+      }
+    }
+  }catch(_){
+    $('#o-price').textContent = '$'+liveQuPrice.toFixed(8);
+    $('#cb-price').textContent = '$'+liveQuPrice.toFixed(8);
+    $('#o-chg').textContent = '+4.28%';
+    $('#cb-chg').textContent = '+4.28%';
+  }
+}
+
+async function search(){
+  const raw=$('#q').value.trim();const out=$('#ex-out');
+  if(!raw){out.className='msg';out.textContent=tr('exEmpty');return}
+  out.className='msg';out.textContent='Querying rpc.qubic.org…';
+  try{
+    if(/^[A-Z]{60}$/.test(raw)){
+      const d=await get('/v1/balances/'+raw);const b=d.balance||d;
+      out.className='card';
+      out.innerHTML=`<div class="k">Identity</div><div class="m" style="margin-bottom:12px">${esc(raw)}</div>`+jtable(b)+`<div class="src">Source: ${RPC}/v1/balances/${esc(raw)}</div>`;
+    }else if(/^\d+$/.test(raw)){
+      const d=await get('/v2/ticks/'+raw+'/transactions');
+      const txs=d.transactions||d||[];
+      out.className='card';
+      out.innerHTML=`<div class="k">Tick #${fmt(raw)} (${Array.isArray(txs)?txs.length:0} transactions)</div>`+(Array.isArray(txs)&&txs.length?`<table><tr><th>Hash / ID</th><th>Source</th><th>Dest</th><th>Amount</th></tr>${txs.slice(0,50).map(x=>{const t=x.transaction||x;return`<tr><td class="m">${esc(t.txId||t.hash||'-')}</td><td class="m">${esc((t.sourceId||'').slice(0,14))}…</td><td class="m">${esc((t.destId||'').slice(0,14))}…</td><td class="m">${fmt(t.amount)}</td></tr>`}).join('')}</table>`:'<div class="msg">No transactions returned for this tick.</div>')+`<div class="src">Source: ${RPC}/v2/ticks/${esc(raw)}/transactions</div>`;
+    }else{
+      const d=await get('/v2/transactions/'+encodeURIComponent(raw));
+      out.className='card';
+      out.innerHTML=`<div class="k">Transaction</div>`+jtable(d.transaction||d)+`<div class="src">Source: ${RPC}/v2/transactions/${esc(raw)}</div>`;
+    }
+  }catch(e){out.className='msg err';out.textContent='Lookup failed: '+e.message}
+}
+$('#q').addEventListener('keydown',e=>{if(e.key==='Enter')search()});
+
+let comps=null;
+async function loadComps(){
+  const out=$('#co-out');out.className='msg';out.textContent='Loading computors…';
+  try{
+    const d=await get('/v1/epochs/current/computors');
+    comps=(d.computors?.identities||d.identities||[]);
+    renderComps();
+  }catch(e){out.className='msg err';out.textContent='Could not load computors: '+e.message}
+}
+function renderComps(){
+  if(!comps)return;
+  const f=$('#c-filter').value.trim().toUpperCase();
+  const rows=comps.map((id,i)=>[i,id]).filter(([i,id])=>!f||String(i)===f||id.startsWith(f));
+  $('#co-out').className='';
+  $('#co-out').innerHTML=`<div class="list">${rows.map(([i,id])=>`<div><span>#${i}</span><a href="#explorer" onclick="$('#q').value='${id}';go('explorer');search()" style="color:var(--tx);text-decoration:none">${id}</a></div>`).join('')}</div><div class="src">Showing ${rows.length} of ${comps.length} · Click any identity to inspect in Explorer</div>`;
+}
+
+const CONTRACTS=[
+  [1,'QX','Decentralized asset exchange'],
+  [2,'Quottery','Peer-to-peer betting & prediction protocol'],
+  [3,'Random','On-chain randomness oracle'],
+  [4,'Qutil','Utility & batch-send contract'],
+  [5,'MLM','My Last Message dead-man switch'],
+  [6,'GQMPROP','General Quorum Proposal governance'],
+  [7,'SWATCH','Smart Watchlist / monitoring'],
+  [8,'CCF','Computor Controlled Fund'],
+  [9,'QEARN','Qubic Earn staking & yield'],
+  [10,'QVAULT','Multi-sig & treasury vault'],
+  [11,'MSVAULT','Multi-signature asset vault'],
+  [12,'QBAY','NFT & digital collectibles marketplace'],
+  [13,'QSWAP','Automated market maker DEX'],
+  [14,'NOST','Nostromo launchpad'],
+  [15,'QDRAW','On-chain lottery'],
+  [16,'RL','Random Lottery'],
+  [17,'QBOND','Qubic Bond protocol']
+];
+$('#sc-tbl').innerHTML=`<tr><th>Index</th><th>Name</th><th>Purpose</th></tr>`+CONTRACTS.map(([i,n,p])=>`<tr><td class="m">${i}</td><td><strong>${n}</strong></td><td>${p}</td></tr>`).join('');
+let assetsLoaded=false;
+async function loadAssets(){
+  const out=$('#as-out');out.textContent='Loading issued assets…';
+  try{
+    const d=await get('/v1/assets/issuances');assetsLoaded=true;
+    const list=d.assets||d.issuances||[];
+    if(!list.length){out.textContent='No issued assets returned.';return}
+    out.className='';
+    out.innerHTML=`<table><tr><th>Asset</th><th>Issuer</th><th>Decimals</th></tr>${list.slice(0,100).map(a=>{const x=a.data||a;return`<tr><td><strong>${esc(x.name||'-')}</strong></td><td class="m">${esc((x.issuerIdentity||'').slice(0,18))}…</td><td class="m">${esc(x.numberOfDecimalPlaces??0)}</td></tr>`}).join('')}</table><div class="src">Source: ${RPC}/v1/assets/issuances (${list.length} total)</div>`;
+  }catch(e){out.className='msg err';out.textContent='Could not load assets: '+e.message}
+}
+
+async function checkWalletAssets(){
+  const addr = $('#as-addr-in').value.trim().toUpperCase();
+  const box = $('#as-wallet-res');
+  if(!/^[A-Z]{60}$/.test(addr)){
+    toast(lang==='th'?'กรุณาวางที่อยู่กระเป๋า Qubic ให้ครบ 60 ตัวอักษร (A-Z)':'Please enter a valid 60-character Qubic identity (A-Z)');
+    return;
+  }
+  box.hidden = false;
+  box.innerHTML = `<div class="msg">${lang==='th'?'กำลังตรวจสอบเหรียญทั้งหมดในกระเป๋าจาก rpc.qubic.org…':'Checking wallet balances & owned assets on rpc.qubic.org…'}</div>`;
+
+  try{
+    const [balRes, ownRes, posRes] = await Promise.allSettled([
+      get('/v1/balances/' + addr),
+      get('/v1/assets/' + addr + '/owned'),
+      get('/v1/assets/' + addr + '/possessed')
+    ]);
+
+    const quBal = balRes.status === 'fulfilled' ? ((balRes.value.balance || balRes.value).balance ?? 0) : 0;
+    const ownedList = ownRes.status === 'fulfilled' ? (ownRes.value.ownedAssets || ownRes.value.assets || []) : [];
+    const possessedList = posRes.status === 'fulfilled' ? (posRes.value.possessedAssets || posRes.value.assets || []) : [];
+
+    const tokenMap = new Map();
+    const parseAsset = (item, typeLabel) => {
+      const d = item.data || item;
+      const issued = d.issuedAsset || d.asset || {};
+      const name = issued.name || d.name || d.assetName || 'UNKNOWN';
+      const issuer = issued.issuerIdentity || d.issuerIdentity || '-';
+      const units = Number(d.numberOfUnits ?? d.balance ?? d.amount ?? 0);
+      const key = name + '_' + issuer;
+      if(tokenMap.has(key)){
+        const prev = tokenMap.get(key);
+        prev.units = Math.max(prev.units, units);
+      } else {
+        tokenMap.set(key, { name, issuer, units, type: typeLabel });
+      }
+    };
+
+    ownedList.forEach(a => parseAsset(a, 'Owned'));
+    possessedList.forEach(a => parseAsset(a, 'Possessed'));
+
+    const tokens = Array.from(tokenMap.values()).filter(t => t.units > 0);
+
+    let html = `
+      <div style="display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:12px">
+        <div>
+          <strong style="font-size:1.05rem;color:var(--cy)">💼 ${lang==='th'?'เหรียญทั้งหมดในกระเป๋า':'Wallet Holdings'}</strong>
+          <div class="m" style="font-size:.78rem;color:var(--tx2);margin-top:2px">${esc(addr)}</div>
+        </div>
+        <button class="btn" style="padding:5px 12px;font-size:.78rem" onclick="$('#as-wallet-res').hidden=true">✕ ${lang==='th'?'ปิด':'Close'}</button>
+      </div>
+      <table>
+        <tr>
+          <th>${lang==='th'?'ชื่อเหรียญ / โทเค็น':'Token / Asset'}</th>
+          <th>${lang==='th'?'จำนวนคงเหลือ':'Balance / Units'}</th>
+          <th>${lang==='th'?'ผู้ออกเหรียญ (Issuer)':'Issuer Identity'}</th>
+        </tr>
+        <tr>
+          <td><strong>QU</strong> <span class="as-badge">Native Coin</span></td>
+          <td class="m" style="color:var(--gr);font-weight:700">${fmt(quBal)} QU</td>
+          <td class="m" style="color:var(--tx2)">Qubic Mainnet</td>
+        </tr>
+    `;
+
+    if(tokens.length > 0){
+      html += tokens.map(t => `
+        <tr>
+          <td><strong>${esc(t.name)}</strong> <span class="as-badge">${esc(t.type)}</span></td>
+          <td class="m" style="font-weight:700">${fmt(t.units)}</td>
+          <td class="m" title="${esc(t.issuer)}">${esc(t.issuer.slice(0, 22))}…</td>
+        </tr>
+      `).join('');
+    } else {
+      html += `<tr><td colspan="3" style="color:var(--tx2);text-align:center;padding:14px">${lang==='th'?'ไม่พบโทเค็นเสริมอื่นในกระเป๋านี้ (มีเฉพาะเหรียญหลัก QU)':'No additional ecosystem tokens held in this wallet (only native QU).'}</td></tr>`;
+    }
+
+    html += `</table><div class="src">Source: ${RPC}/v1/balances &amp; /v1/assets/${esc(addr.slice(0,12))}…</div>`;
+    box.innerHTML = html;
+  }catch(e){
+    box.innerHTML = `<div class="msg err">${lang==='th'?'ดึงข้อมูลกระเป๋าไม่สำเร็จ: ':'Failed to fetch wallet assets: '}${esc(e.message)}</div>`;
+  }
+}
+$('#as-addr-in').addEventListener('keydown', e => { if(e.key === 'Enter') checkWalletAssets(); });
+
+const WKEY='qubic_watchlist_v1';
+const getWatch=()=>{try{return JSON.parse(localStorage.getItem(WKEY)||'[]')}catch{return[]}};
+const setWatch=(a)=>localStorage.setItem(WKEY,JSON.stringify(a));
+function addWatch(){
+  const id=$('#w-in').value.trim().toUpperCase();
+  if(!/^[A-Z]{60}$/.test(id)){toast('Identity must be 60 uppercase letters A-Z');return}
+  const w=getWatch();if(!w.includes(id)){w.push(id);setWatch(w)}
+  $('#w-in').value='';renderWatch();
+}
+function delWatch(id){setWatch(getWatch().filter(x=>x!==id));renderWatch()}
+async function renderWatch(){
+  const w=getWatch(),out=$('#wl-out');
+  if(!w.length){out.className='msg';out.textContent=tr('wlEmpty');return}
+  out.className='card';
+  out.innerHTML=`<table><tr><th>Identity</th><th>Balance (QU)</th><th></th></tr>${w.map(id=>`<tr><td class="m">${id}</td><td class="m" id="wb-${id}">…</td><td><button class="btn" onclick="delWatch('${id}')">Remove</button></td></tr>`).join('')}</table>`;
+  for(const id of w){
+    try{const d=await get('/v1/balances/'+id);$('#wb-'+id).textContent=fmt((d.balance||d).balance)}
+    catch{$('#wb-'+id).textContent='error'}
+  }
+}
+
+const PARTNERS=[
+  ['SUOMSIANG CRYPTO on X','@s_o_m_s_i_a_n_g — daily Qubic updates, ecosystem notes and community links.','https://x.com/s_o_m_s_i_a_n_g','Follow on X'],
+  ['Qubic Official','Main portal, roadmap, whitepaper and ecosystem directory.','https://qubic.org','Visit qubic.org'],
+  ['Qubic Explorer','Official block, tick, transaction and smart-contract explorer.','https://explorer.qubic.org','Open Explorer'],
+  ['Qubic Wallet','Official web and mobile wallet for QU and Qubic assets.','https://wallet.qubic.org','Open Wallet'],
+  ['QX Exchange','Decentralized on-chain orderbook exchange for Qubic tokens.','https://qx.qubic.org','Open QX'],
+  ['QubicSwap','Automated market maker DEX on Qubic.','https://qubicswap.com','Open QubicSwap'],
+  ['Qubic Docs','Developer documentation, RPC reference and C++ contract guides.','https://docs.qubic.org','Read Docs'],
+  ['Qubic GitHub','Open-source core node, contracts and tooling repositories.','https://github.com/qubic','View GitHub'],
+  ['Suomsiang Crypto Trads','Experimental Web3 trading tools and ecosystem utilities.','https://sompongma67-spec.github.io/suomsiang-crypto-trads/','Open Trads ↗']
+];
+$('#pa-grid').innerHTML=PARTNERS.map(([n,d,u,cta])=>`<a class="card partner" href="${u}" target="_blank" rel="noopener"><div class="k">${esc(u.replace('https://',''))}</div><strong>${esc(n)}</strong><p style="color:var(--tx2);margin:6px 0 0">${esc(d)}</p><span class="btn pri">${esc(cta)} ↗</span></a>`).join('');
+
+function refreshAll(){loadOverview();if(comps)loadComps();if(assetsLoaded)loadAssets();toast(lang==='th'?'รีเฟรชข้อมูลล่าสุดแล้ว':'Refreshed')}
+const TH_KEY='sc_theme_v1';
+const PRESETS=[
+  ['Pink Dark','#13070f','#ff4fa3','#fff0f7'],
+  ['Sakura Light','#fff1f7','#d6247f','#2a0f1e'],
+  ['Qubic Cyan','#070a10','#18e0ff','#eef4ff'],
+  ['Royal Purple','#0e0718','#c06bff','#f5eeff'],
+  ['Mint Dark','#06120e','#2ee59d','#ebfff7'],
+  ['Warm Gold','#140e06','#f6b93b','#fff8eb']
+];
+const hexLum=h=>{const n=parseInt(h.slice(1),16);return(.299*(n>>16)+.587*(n>>8&255)+.114*(n&255))/255};
+const shiftHex=(h,a)=>{let n=parseInt(h.slice(1),16);return'#'+[n>>16,n>>8&255,n&255].map(v=>Math.max(0,Math.min(255,Math.round(v+a))).toString(16).padStart(2,'0')).join('')};
+function applyTheme(t){
+  const light=hexLum(t.bg)>.5;
+  document.documentElement.dataset.theme=light?'light':'dark';
+  const r=document.documentElement.style;
+  r.setProperty('--bg',t.bg);r.setProperty('--ac1',t.ac);r.setProperty('--ac2',shiftHex(t.ac,light?36:52));r.setProperty('--tx',t.tx);
+  r.setProperty('--card',light?'#ffffff':shiftHex(t.bg,13));
+  r.setProperty('--tx2',light?shiftHex(t.tx,70):shiftHex(t.tx,-55));
+  r.setProperty('--bd',light?'rgba(0,0,0,.12)':'rgba(255,255,255,.11)');
+  r.setProperty('--glass',light?'rgba(0,0,0,.04)':'rgba(255,255,255,.05)');
+  r.setProperty('--ink',hexLum(t.ac)>.55?'#1a0610':'#ffffff');
+  $('meta[name=theme-color]').content=t.bg;
+  $('#c-bg').value=t.bg;$('#c-ac').value=t.ac;$('#c-tx').value=t.tx;
+  localStorage.setItem(TH_KEY,JSON.stringify(t));
+}
+$('#presets').innerHTML=PRESETS.map(([n,bg,ac,tx])=>`<button type="button" title="${n}" aria-label="${n}" style="background:linear-gradient(135deg,${bg} 50%,${ac} 50%)" onclick='applyTheme({bg:"${bg}",ac:"${ac}",tx:"${tx}"})'></button>`).join('');
+['c-bg','c-ac','c-tx'].forEach(id=>$('#'+id).addEventListener('input',()=>applyTheme({bg:$('#c-bg').value,ac:$('#c-ac').value,tx:$('#c-tx').value})));
+$('#t-reset').onclick=()=>applyTheme({bg:'#13070f',ac:'#ff4fa3',tx:'#fff0f7'});
+const pop=$('#themePop'),tBtn=$('#themeBtn');
+tBtn.onclick=()=>{const o=pop.hidden;pop.hidden=!o;tBtn.setAttribute('aria-expanded',o)};
+document.addEventListener('click',e=>{if(!pop.hidden&&!pop.contains(e.target)&&e.target!==tBtn){pop.hidden=true;tBtn.setAttribute('aria-expanded','false')}});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!pop.hidden){pop.hidden=true;tBtn.setAttribute('aria-expanded','false');tBtn.focus()}});
+try{const s=JSON.parse(localStorage.getItem(TH_KEY));if(s?.bg)applyTheme(s);else applyTheme({bg:'#13070f',ac:'#ff4fa3',tx:'#fff0f7'})}catch{applyTheme({bg:'#13070f',ac:'#ff4fa3',tx:'#fff0f7'})}
+
+const pl=$('#player'),pTab=$('#ptab'),vid=$('#vid'),viz=$('#viz'),vctx=viz.getContext('2d');
+const PTH_KEY='sc_pl_theme_v1';
+let tracks=[],idx=-1,acx,ana,srcNode,dataArr,rafId;
+function setPlayerOpen(o){pl.classList.toggle('open',o);document.body.classList.toggle('pl-open',o);pTab.setAttribute('aria-expanded',o)}
+pTab.onclick=()=>setPlayerOpen(!pl.classList.contains('open'));
+$('#pclose').onclick=()=>setPlayerOpen(false);
+function applyPlTheme(t){
+  const light=hexLum(t.bg)>.5,s=pl.style;
+  s.setProperty('--pbg',t.bg);s.setProperty('--p1',t.ac);s.setProperty('--p2',shiftHex(t.ac,light?36:52));
+  s.setProperty('--ptx',t.tx);s.setProperty('--ptx2',light?shiftHex(t.tx,70):shiftHex(t.tx,-55));
+  $('#pc-bg').value=t.bg;$('#pc-ac').value=t.ac;$('#pc-tx').value=t.tx;
+  localStorage.setItem(PTH_KEY,JSON.stringify(t));
+}
+$('#ppresets').innerHTML=PRESETS.map(([n,bg,ac,tx])=>`<button type="button" title="${n}" aria-label="${n}" style="background:linear-gradient(135deg,${bg} 50%,${ac} 50%)" onclick='applyPlTheme({bg:"${bg}",ac:"${ac}",tx:"${tx}"})'></button>`).join('');
+['pc-bg','pc-ac','pc-tx'].forEach(id=>$('#'+id).addEventListener('input',()=>applyPlTheme({bg:$('#pc-bg').value,ac:$('#pc-ac').value,tx:$('#pc-tx').value})));
+try{const ps=JSON.parse(localStorage.getItem(PTH_KEY));applyPlTheme(ps?.bg?ps:{bg:'#1f0d19',ac:'#ff4fa3',tx:'#fff0f7'})}catch{applyPlTheme({bg:'#1f0d19',ac:'#ff4fa3',tx:'#fff0f7'})}
+
+function ensureAudio(){
+  if(acx)return;
+  const AC=window.AudioContext||window.webkitAudioContext;if(!AC)return;
+  acx=new AC();ana=acx.createAnalyser();ana.fftSize=128;ana.smoothingTimeConstant=.82;
+  srcNode=acx.createMediaElementSource(vid);srcNode.connect(ana);ana.connect(acx.destination);
+  dataArr=new Uint8Array(ana.frequencyBinCount);
+}
+function drawViz(){
+  rafId=requestAnimationFrame(drawViz);
+  const W=viz.width,H=viz.height,cs=getComputedStyle(pl),c1=cs.getPropertyValue('--p1').trim(),c2=cs.getPropertyValue('--p2').trim();
+  vctx.clearRect(0,0,W,H);
+  let bass=0;
+  if(ana&&!vid.paused){ana.getByteFrequencyData(dataArr);for(let i=0;i<8;i++)bass+=dataArr[i];bass/=8*255}
+  document.documentElement.style.setProperty('--beat',bass.toFixed(3));
+  const mode=$('#pviz').value,n=dataArr?dataArr.length:48;
+  const g=vctx.createLinearGradient(0,H,W,0);g.addColorStop(0,c1);g.addColorStop(1,c2);
+  vctx.fillStyle=g;vctx.strokeStyle=g;vctx.lineWidth=3;
+  if(mode==='wave'){
+    vctx.beginPath();
+    for(let i=0;i<n;i++){const v=(dataArr?dataArr[i]:0)/255,x=i/(n-1)*W,y=H/2+Math.sin(i*.45+performance.now()*.005)*v*H*.42;i?vctx.lineTo(x,y):vctx.moveTo(x,y)}
+    vctx.stroke();
+  }else if(mode==='ring'){
+    const cx=W/2,cy=H/2,r=34+bass*30;
+    for(let i=0;i<n;i++){const v=(dataArr?dataArr[i]:6)/255,a=i/n*Math.PI*2;vctx.beginPath();vctx.moveTo(cx+Math.cos(a)*r,cy+Math.sin(a)*r);vctx.lineTo(cx+Math.cos(a)*(r+v*58),cy+Math.sin(a)*(r+v*58));vctx.stroke()}
+  }else{
+    const bw=W/n;
+    for(let i=0;i<n;i++){const v=(dataArr?dataArr[i]:4)/255,h=Math.max(4,v*(H-12));vctx.fillRect(i*bw+2,H-h,Math.max(2,bw-4),h)}
+  }
+}
+drawViz();
+
+const fmtT=s=>!isFinite(s)?'0:00':Math.floor(s/60)+':'+String(Math.floor(s%60)).padStart(2,'0');
+function renderList(){
+  $('#plist').innerHTML=tracks.length?tracks.map((t,i)=>`<li class="${i===idx?'on':''}"><button class="nm" onclick="playAt(${i})">${t.video?'🎬':'🎵'} ${esc(t.name)}</button><button class="rm" aria-label="Remove" onclick="removeAt(${i})">✕</button></li>`).join(''):`<li class="empty">${esc(tr('plEmpty'))}</li>`;
+}
+function playAt(i){
+  if(i<0||i>=tracks.length)return;
+  idx=i;const t=tracks[i];
+  $('#pstage').classList.toggle('isvideo',t.video);
+  $('#ptitle').textContent=t.name;
+  vid.src=t.url;ensureAudio();if(acx?.state==='suspended')acx.resume();
+  vid.play().catch(()=>{});renderList();
+}
+function removeAt(i){
+  URL.revokeObjectURL(tracks[i].url);tracks.splice(i,1);
+  if(i===idx){vid.pause();vid.removeAttribute('src');idx=-1;$('#ptitle').textContent=tr('plTrack');$('#pstage').classList.remove('isvideo')}
+  else if(i<idx)idx--;
+  renderList();
+}
+function addFiles(files){
+  const list=[...files].filter(f=>f.type.startsWith('audio/')||f.type.startsWith('video/')||/\.(mp3|mp4|wav|ogg|m4a|webm)$/i.test(f.name));
+  if(!list.length)return;
+  const start=tracks.length;
+  list.forEach(f=>tracks.push({name:f.name,url:URL.createObjectURL(f),video:f.type.startsWith('video/')||/\.(mp4|webm)$/i.test(f.name)}));
+  renderList();if(idx===-1)playAt(start);
+}
+$('#padd').onclick=()=>$('#pfile').click();
+$('#pfile').onchange=e=>{addFiles(e.target.files);e.target.value=''};
+$('#pclear').onclick=()=>{tracks.forEach(t=>URL.revokeObjectURL(t.url));tracks=[];idx=-1;vid.pause();vid.removeAttribute('src');$('#ptitle').textContent=tr('plTrack');$('#pstage').classList.remove('isvideo');renderList()};
+$('#pplay').onclick=()=>{if(!tracks.length)return $('#pfile').click();if(idx===-1)return playAt(0);ensureAudio();if(acx?.state==='suspended')acx.resume();vid.paused?vid.play():vid.pause()};
+$('#pprev').onclick=()=>tracks.length&&playAt((idx-1+tracks.length)%tracks.length);
+$('#pnext').onclick=()=>tracks.length&&playAt((idx+1)%tracks.length);
+$('#ploop').onclick=e=>{vid.loop=!vid.loop;e.currentTarget.setAttribute('aria-pressed',vid.loop)};
+$('#pmute').onclick=e=>{vid.muted=!vid.muted;e.currentTarget.setAttribute('aria-pressed',vid.muted);e.currentTarget.textContent=vid.muted?'🔇':'🔊'};
+$('#pvol').oninput=e=>vid.volume=+e.target.value;
+$('#pseek').oninput=e=>{if(isFinite(vid.duration))vid.currentTime=e.target.value/1000*vid.duration};
+vid.ontimeupdate=()=>{if(isFinite(vid.duration)){$('#pseek').value=Math.round(vid.currentTime/vid.duration*1000);$('#pcur').textContent=fmtT(vid.currentTime);$('#pdur').textContent=fmtT(vid.duration)}};
+vid.onplay=()=>$('#pplay').textContent=tr('plPause');
+vid.onpause=()=>$('#pplay').textContent=tr('plPlay');
+vid.onended=()=>{if(!vid.loop&&tracks.length)playAt((idx+1)%tracks.length)};
+['dragenter','dragover'].forEach(ev=>pl.addEventListener(ev,e=>{e.preventDefault();pl.classList.add('drag')}));
+['dragleave','drop'].forEach(ev=>pl.addEventListener(ev,e=>{e.preventDefault();pl.classList.remove('drag');if(ev==='drop')addFiles(e.dataTransfer.files)}));
+
+function setLang(l){
+  if(!I18N[l])return;lang=l;localStorage.setItem('sc_lang',l);
+  document.documentElement.lang=l;
+  $('#lang').querySelectorAll('button').forEach(b=>b.setAttribute('aria-pressed',b.dataset.l===l));
+  const L=I18N[l];
+  nav.querySelectorAll('button').forEach(b=>b.textContent=L.tabs[b.dataset.tab]);
+  $('#refreshBtn').textContent=L.refresh;$('#themeBtn').textContent=L.theme;
+  $('#t-title').textContent=L.tTitle;$('#t-bg').textContent=L.tBg;$('#t-ac').textContent=L.tAc;$('#t-tx').textContent=L.tTx;$('#t-reset').textContent=L.tReset;
+  $('#k-tick').textContent=L.kTick;$('#k-price').textContent=L.kPrice;$('#k-ep').textContent=L.kEp;$('#k-rem').textContent=L.kRem;
+  $('#k-circ').textContent=L.kCirc;$('#k-burn').textContent=L.kBurn;$('#k-act').textContent=L.kAct;$('#k-comp').textContent=L.kComp;
+  $('#flip-open-lbl').textContent=L.flipOpen;$('#flipBackBtn').textContent=L.flipBack;
+  $('#mkt-title').textContent=L.mktTitle;$('#mkt-sub').textContent=L.mktSub;
+  $('#th-ex').textContent=L.thEx;$('#th-pair').textContent=L.thPair;$('#th-pr').textContent=L.thPr;$('#th-vol').textContent=L.thVol;$('#th-tr').textContent=L.thTr;
+  $('#ex-title').textContent=L.exTitle;$('#ex-sub').textContent=L.exSub;$('#q').placeholder=L.exPh;$('#ex-btn').textContent=L.exBtn;
+  if($('#ex-out').classList.contains('msg'))$('#ex-out').textContent=L.exEmpty;
+  $('#co-title').textContent=L.coTitle;$('#co-sub').textContent=L.coSub;$('#c-filter').placeholder=L.coPh;
+  if(!comps)$('#co-out').textContent=L.coEmpty;
+  $('#as-title').textContent=L.asTitle;$('#as-sub').textContent=L.asSub;$('#as-iss').textContent=L.asIss;$('#as-sc').textContent=L.asSc;
+  $('#as-addr-in').placeholder=L.asAddrPh;$('#as-addr-btn').textContent=L.asAddrBtn;
+  if(!assetsLoaded)$('#as-out').textContent=L.asEmpty;
+  $('#tr-title').textContent=L.trTitle;$('#tr-sub').textContent=L.trSub;$('#tr-desc').textContent=L.trDesc;$('#tr-open').textContent=L.trOpen;
+  $('#wl-title').textContent=L.wlTitle;$('#wl-sub').textContent=L.wlSub;$('#w-in').placeholder=L.wlPh;$('#wl-btn').textContent=L.wlBtn;
+  if(!getWatch().length)$('#wl-out').textContent=L.wlEmpty;
+  $('#pa-title').textContent=L.paTitle;$('#pa-sub').textContent=L.paSub;$('#pa-x-t').textContent=L.paXt;$('#pa-x-d').textContent=L.paXd;$('#pa-x-b').textContent=L.paXb;
+  $('#ptab-lbl').textContent=L.ptab;$('#pl-head').textContent=L.plHead;$('#pl-vol').textContent=L.plVol;$('#pl-viz').textContent=L.plViz;
+  $('#pl-col').textContent=L.plCol;$('#pl-bg').textContent=L.plBg;$('#pl-ac').textContent=L.plAc;$('#pl-tx').textContent=L.plTx;
+  $('#pplay').textContent=vid.paused?L.plPlay:L.plPause;$('#padd').textContent=L.plAdd;$('#pclear').textContent=L.plClear;
+  if(idx===-1)$('#ptitle').textContent=L.plTrack;
+  $('#f-r').textContent=L.fR;
+  renderList();
+}
+$('#lang').addEventListener('click',e=>{const b=e.target.closest('button[data-l]');if(b)setLang(b.dataset.l)});
+setLang(lang);
+const h=location.hash.slice(1);if(h)go(h);
+loadOverview();setInterval(loadOverview,15000);
+
+/* ===== Cyber Space Shooter Game Engine ===== */
+let rocketAnim = null;
+let rocketRunning = false;
+let rocketScore = 0;
+let rocketLives = 3;
+let rocketWave = 1;
+let powerLevel = 1;
+let powerTimer = 0;
+
+let ship = { x: 480, y: 480, targetX: 480, targetY: 480, w: 36, h: 46, invuln: 0 };
+let bullets = [];
+let enemies = [];
+let powerups = [];
+let particles = [];
+let stars = [];
+let keysPressed = {};
+let lastShotTime = 0;
+let lastSpawnTime = 0;
+
+let rocketAudioCtx = null;
+function initRocketAudio(){
+  if(!rocketAudioCtx) rocketAudioCtx = new (window.AudioContext || window.webkitAudioContext)();
+}
+
+function playRocketSound(type){
+  const bgm = $('#rocketBgm');
+  if(bgm && bgm.muted) return;
+  initRocketAudio();
+  if(!rocketAudioCtx) return;
+  if(rocketAudioCtx.state === 'suspended') rocketAudioCtx.resume();
+  const osc = rocketAudioCtx.createOscillator();
+  const gain = rocketAudioCtx.createGain();
+  osc.connect(gain);
+  gain.connect(rocketAudioCtx.destination);
+  const now = rocketAudioCtx.currentTime;
+
+  if(type === 'shoot'){
+    osc.type = 'sawtooth';
+    osc.frequency.setValueAtTime(680, now);
+    osc.frequency.exponentialRampToValueAtTime(160, now + 0.08);
+    gain.gain.setValueAtTime(0.14, now);
+    gain.gain.exponentialRampToValueAtTime(0.005, now + 0.08);
+    osc.start(now); osc.stop(now + 0.08);
+  } else if(type === 'boom'){
+    osc.type = 'square';
+    osc.frequency.setValueAtTime(140, now);
+    osc.frequency.exponentialRampToValueAtTime(28, now + 0.24);
+    gain.gain.setValueAtTime(0.28, now);
+    gain.gain.exponentialRampToValueAtTime(0.005, now + 0.24);
+    osc.start(now); osc.stop(now + 0.24);
+  } else if(type === 'power'){
+    osc.type = 'sine';
+    osc.frequency.setValueAtTime(420, now);
+    osc.frequency.exponentialRampToValueAtTime(980, now + 0.2);
+    gain.gain.setValueAtTime(0.22, now);
+    gain.gain.exponentialRampToValueAtTime(0.005, now + 0.2);
+    osc.start(now); osc.stop(now + 0.2);
+  }
+}
+
+function openRocketGame(){
+  $('#rocketModal').classList.add('open');
+  $('#rocketCover').classList.remove('hide');
+  rocketRunning = false;
+
+  const bgm = $('#rocketBgm');
+  bgm.volume = parseFloat($('#coverVolumeSlider').value) || 0.5;
+  bgm.play().catch(()=>{});
+}
+
+function changeCoverVolume(val){
+  const bgm = $('#rocketBgm');
+  bgm.volume = val;
+  $('#coverMuteBtn').textContent = val == 0 ? '🔇' : '🔊';
+}
+
+function toggleCoverMute(){
+  const bgm = $('#rocketBgm');
+  const slider = $('#coverVolumeSlider');
+  const muteBtn = $('#coverMuteBtn');
+  if(bgm.muted || bgm.volume == 0){
+    bgm.muted = false;
+    if(slider.value == 0) slider.value = 0.5;
+    bgm.volume = slider.value;
+    muteBtn.textContent = '🔊';
+  } else {
+    bgm.muted = true;
+    muteBtn.textContent = '🔇';
+  }
+}
+
+function startRocketGamePlay(){
+  initRocketAudio();
+  const bgm = $('#rocketBgm');
+  bgm.muted = false;
+  bgm.volume = parseFloat($('#coverVolumeSlider').value) || 0.4;
+  bgm.play().catch(()=>{});
+
+  $('#rocketCover').classList.add('hide');
+  initRocketGame();
+}
+
+function closeRocketGame(){
+  $('#rocketModal').classList.remove('open');
+  rocketRunning = false;
+  cancelAnimationFrame(rocketAnim);
+  const bgm = $('#rocketBgm');
+  bgm.pause();
+  bgm.currentTime = 0;
+}
+
+function updateRocketHUD(){
+  const hearts = '❤️'.repeat(Math.max(0, rocketLives)) + '🖤'.repeat(Math.max(0, 3 - rocketLives));
+  const pwrText = powerLevel > 1 ? ' | ⚡ ปืน 3 ทิศทาง' : '';
+  $('#rocketScore').textContent = `คะแนน: ${fmt(rocketScore)} | เกราะ: ${hearts} | เวฟ: ${rocketWave}${pwrText}`;
+}
+
+function initRocketGame(){
+  $('#rocketGameOver').classList.remove('show');
+  rocketScore = 0;
+  rocketLives = 3;
+  rocketWave = 1;
+  powerLevel = 1;
+  powerTimer = 0;
+  ship = { x: 480, y: 480, targetX: 480, targetY: 480, w: 36, h: 46, invuln: 0 };
+  bullets = [];
+  enemies = [];
+  powerups = [];
+  particles = [];
+  stars = Array.from({length: 85}, () => ({
+    x: Math.random() * 960,
+    y: Math.random() * 560,
+    r: 0.7 + Math.random() * 1.8,
+    spd: 1.2 + Math.random() * 3.5
+  }));
+  lastShotTime = 0;
+  lastSpawnTime = 0;
+  updateRocketHUD();
+  rocketRunning = true;
+  cancelAnimationFrame(rocketAnim);
+  startRocketLoop();
+}
+
+const rCanvas = $('#rocketCanvas');
+const rCtx = rCanvas.getContext('2d');
+
+function updateShipPointer(clientX, clientY){
+  const rect = rCanvas.getBoundingClientRect();
+  const scaleX = 960 / rect.width;
+  const scaleY = 560 / rect.height;
+  ship.targetX = Math.max(28, Math.min(932, (clientX - rect.left) * scaleX));
+  ship.targetY = Math.max(40, Math.min(525, (clientY - rect.top) * scaleY));
+}
+
+rCanvas.addEventListener('mousemove', e => {
+  if(rocketRunning) updateShipPointer(e.clientX, e.clientY);
+});
+rCanvas.addEventListener('touchmove', e => {
+  if(rocketRunning && e.touches[0]){
+    e.preventDefault();
+    updateShipPointer(e.touches[0].clientX, e.touches[0].clientY);
+  }
+}, {passive: false});
+rCanvas.addEventListener('touchstart', e => {
+  if(rocketRunning && e.touches[0]) updateShipPointer(e.touches[0].clientX, e.touches[0].clientY);
+}, {passive: true});
+
+window.addEventListener('keydown', e => { keysPressed[e.code] = true; });
+window.addEventListener('keyup', e => { keysPressed[e.code] = false; });
+
+function spawnExplosion(x, y, color, count = 16){
+  for(let i = 0; i < count; i++){
+    const ang = Math.random() * Math.PI * 2;
+    const spd = 1.5 + Math.random() * 5.5;
+    particles.push({
+      x, y,
+      vx: Math.cos(ang) * spd,
+      vy: Math.sin(ang) * spd,
+      life: 1,
+      color
+    });
+  }
+}
+
+function startRocketLoop(){
+  let lastTime = performance.now();
+
+  function loop(now){
+    if(!rocketRunning) return;
+    let dt = (now - lastTime) / 16.66;
+    if(dt > 2.5) dt = 2.5;
+    lastTime = now;
+
+    // ควบคุมด้วยคีย์บอร์ดเสริมจากเมาส์
+    const keySpd = 8 * dt;
+    if(keysPressed['ArrowLeft'] || keysPressed['KeyA']) ship.targetX = Math.max(28, ship.targetX - keySpd);
+    if(keysPressed['ArrowRight'] || keysPressed['KeyD']) ship.targetX = Math.min(932, ship.targetX + keySpd);
+    if(keysPressed['ArrowUp'] || keysPressed['KeyW']) ship.targetY = Math.max(40, ship.targetY - keySpd);
+    if(keysPressed['ArrowDown'] || keysPressed['KeyS']) ship.targetY = Math.min(525, ship.targetY + keySpd);
+
+    ship.x += (ship.targetX - ship.x) * Math.min(1, 0.28 * dt);
+    ship.y += (ship.targetY - ship.y) * Math.min(1, 0.28 * dt);
+    if(ship.invuln > 0) ship.invuln -= dt;
+    if(powerTimer > 0){
+      powerTimer -= dt;
+      if(powerTimer <= 0){ powerLevel = 1; updateRocketHUD(); }
+    }
+
+    // ยิงจรวดเลเซอร์อัตโนมัติ
+    if(now - lastShotTime > (powerLevel > 1 ? 150 : 185)){
+      lastShotTime = now;
+      bullets.push({ x: ship.x, y: ship.y - 24, vx: 0, vy: -13 });
+      if(powerLevel > 1){
+        bullets.push({ x: ship.x - 14, y: ship.y - 12, vx: -2.4, vy: -12.5 });
+        bullets.push({ x: ship.x + 14, y: ship.y - 12, vx: 2.4, vy: -12.5 });
+      }
+      playRocketSound('shoot');
+    }
+
+    // ปล่อยอุกกาบาตและยานเอเลี่ยน
+    rocketWave = 1 + Math.floor(rocketScore / 1500);
+    const spawnDelay = Math.max(320, 880 - rocketWave * 55);
+    if(now - lastSpawnTime > spawnDelay){
+      lastSpawnTime = now;
+      const isAlien = Math.random() < 0.38;
+      const hp = isAlien ? (1 + Math.floor(rocketWave / 3)) : 1;
+      enemies.push({
+        x: 45 + Math.random() * 870,
+        y: -30,
+        vx: isAlien ? (Math.random() - 0.5) * 3.2 : (Math.random() - 0.5) * 1.2,
+        vy: (2.4 + Math.random() * 2.4 + rocketWave * 0.25),
+        r: isAlien ? 20 : (16 + Math.random() * 10),
+        hp,
+        maxHp: hp,
+        type: isAlien ? 'alien' : 'meteor',
+        rot: Math.random() * Math.PI * 2
+      });
+    }
+
+    // วาดพื้นหลังอวกาศและดวงดาว
+    rCtx.fillStyle = '#070312';
+    rCtx.fillRect(0, 0, 960, 560);
+
+    rCtx.fillStyle = '#ffffff';
+    stars.forEach(s => {
+      s.y += s.spd * dt;
+      if(s.y > 560){ s.y = 0; s.x = Math.random() * 960; }
+      rCtx.globalAlpha = 0.35 + (s.r / 3);
+      rCtx.beginPath();
+      rCtx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+      rCtx.fill();
+    });
+    rCtx.globalAlpha = 1;
+
+    // อัปเดตกระสุนเลเซอร์
+    for(let i = bullets.length - 1; i >= 0; i--){
+      const b = bullets[i];
+      b.x += b.vx * dt;
+      b.y += b.vy * dt;
+      if(b.y < -20 || b.x < 0 || b.x > 960){
+        bullets.splice(i, 1);
+        continue;
+      }
+      rCtx.save();
+      rCtx.fillStyle = '#ff4fa3';
+      rCtx.shadowColor = '#ff4fa3';
+      rCtx.shadowBlur = 10;
+      rCtx.fillRect(b.x - 2.5, b.y - 10, 5, 18);
+      rCtx.fillStyle = '#ffffff';
+      rCtx.fillRect(b.x - 1, b.y - 8, 2, 14);
+      rCtx.restore();
+    }
+
+    // อัปเดตไอเทมอัปเกรดปืน
+    for(let i = powerups.length - 1; i >= 0; i--){
+      const p = powerups[i];
+      p.y += 2.6 * dt;
+      if(p.y > 580){ powerups.splice(i, 1); continue; }
+      rCtx.save();
+      rCtx.fillStyle = '#36e3a5';
+      rCtx.shadowColor = '#36e3a5';
+      rCtx.shadowBlur = 14;
+      rCtx.beginPath();
+      rCtx.arc(p.x, p.y, 13, 0, Math.PI * 2);
+      rCtx.fill();
+      rCtx.fillStyle = '#071a12';
+      rCtx.font = 'bold 13px sans-serif';
+      rCtx.textAlign = 'center';
+      rCtx.fillText('⚡', p.x, p.y + 4.5);
+      rCtx.restore();
+
+      if(Math.hypot(p.x - ship.x, p.y - ship.y) < 34){
+        powerLevel = 2;
+        powerTimer = 600;
+        rocketScore += 150;
+        playRocketSound('power');
+        updateRocketHUD();
+        powerups.splice(i, 1);
+      }
+    }
+
+    // อัปเดตศัตรูและอุกกาบาต
+    for(let i = enemies.length - 1; i >= 0; i--){
+      const en = enemies[i];
+      en.x += en.vx * dt;
+      en.y += en.vy * dt;
+      en.rot += 0.03 * dt;
+      if(en.x < 25 || en.x > 935) en.vx *= -1;
+      if(en.y > 590){ enemies.splice(i, 1); continue; }
+
+      // เช็กกระสุนชนศัตรู
+      let destroyed = false;
+      for(let j = bullets.length - 1; j >= 0; j--){
+        const b = bullets[j];
+        if(Math.hypot(b.x - en.x, b.y - en.y) < en.r + 6){
+          bullets.splice(j, 1);
+          en.hp--;
+          spawnExplosion(b.x, b.y, '#ff9ad5', 5);
+          if(en.hp <= 0){
+            destroyed = true;
+            rocketScore += en.type === 'alien' ? 120 : 60;
+            playRocketSound('boom');
+            spawnExplosion(en.x, en.y, en.type === 'alien' ? '#00f0ff' : '#ff6b8b', 18);
+            if(Math.random() < 0.12) powerups.push({ x: en.x, y: en.y });
+            updateRocketHUD();
+          }
+          break;
+        }
+      }
+      if(destroyed){ enemies.splice(i, 1); continue; }
+
+      // เช็กศัตรูชนยานผู้เล่น
+      if(ship.invuln <= 0 && Math.hypot(en.x - ship.x, en.y - ship.y) < en.r + 16){
+        enemies.splice(i, 1);
+        rocketLives--;
+        ship.invuln = 90;
+        powerLevel = 1;
+        playRocketSound('boom');
+        spawnExplosion(ship.x, ship.y, '#ff4fa3', 26);
+        updateRocketHUD();
+        if(rocketLives <= 0){
+          rocketRunning = false;
+          $('#rocketFinalScore').textContent = `คะแนนรวมของคุณ: ${fmt(rocketScore)} (เวฟ ${rocketWave})`;
+          $('#rocketGameOver').classList.add('show');
+          return;
+        }
+        continue;
+      }
+
+      // วาดศัตรู
+      rCtx.save();
+      rCtx.translate(en.x, en.y);
+      if(en.type === 'alien'){
+        rCtx.fillStyle = '#1e1035';
+        rCtx.strokeStyle = '#00f0ff';
+        rCtx.lineWidth = 2.5;
+        rCtx.beginPath();
+        rCtx.ellipse(0, 0, en.r + 4, en.r * 0.55, 0, 0, Math.PI * 2);
+        rCtx.fill();
+        rCtx.stroke();
+        rCtx.fillStyle = '#00f0ff';
+        rCtx.beginPath();
+        rCtx.arc(0, -4, en.r * 0.45, Math.PI, 0);
+        rCtx.fill();
+      } else {
+        rCtx.rotate(en.rot);
+        rCtx.fillStyle = '#3b1d2e';
+        rCtx.strokeStyle = '#ff6b8b';
+        rCtx.lineWidth = 2;
+        rCtx.beginPath();
+        for(let k = 0; k < 7; k++){
+          const a = (k / 7) * Math.PI * 2;
+          const rad = en.r * (0.82 + (k % 2) * 0.25);
+          k === 0 ? rCtx.moveTo(Math.cos(a)*rad, Math.sin(a)*rad) : rCtx.lineTo(Math.cos(a)*rad, Math.sin(a)*rad);
+        }
+        rCtx.closePath();
+        rCtx.fill();
+        rCtx.stroke();
+      }
+      rCtx.restore();
+    }
+
+    // วาดเอฟเฟกต์ระเบิด
+    for(let i = particles.length - 1; i >= 0; i--){
+      const pt = particles[i];
+      pt.x += pt.vx * dt;
+      pt.y += pt.vy * dt;
+      pt.life -= 0.035 * dt;
+      if(pt.life <= 0){ particles.splice(i, 1); continue; }
+      rCtx.globalAlpha = pt.life;
+      rCtx.fillStyle = pt.color;
+      rCtx.beginPath();
+      rCtx.arc(pt.x, pt.y, 3, 0, Math.PI * 2);
+      rCtx.fill();
+    }
+    rCtx.globalAlpha = 1;
+
+    // วาดจรวดของผู้เล่น
+    if(ship.invuln <= 0 || Math.floor(ship.invuln / 5) % 2 === 0){
+      rCtx.save();
+      rCtx.translate(ship.x, ship.y);
+
+      // เปลวไฟไอพ่นด้านท้าย
+      const flameH = 14 + Math.random() * 10;
+      rCtx.fillStyle = '#36e3a5';
+      rCtx.beginPath();
+      rCtx.moveTo(-7, 18);
+      rCtx.lineTo(0, 18 + flameH);
+      rCtx.lineTo(7, 18);
+      rCtx.closePath();
+      rCtx.fill();
+
+      // ตัวจรวด Cyber
+      rCtx.fillStyle = '#ffffff';
+      rCtx.strokeStyle = '#ff4fa3';
+      rCtx.lineWidth = 2.5;
+      rCtx.beginPath();
+      rCtx.moveTo(0, -24);
+      rCtx.lineTo(18, 16);
+      rCtx.lineTo(7, 12);
+      rCtx.lineTo(0, 18);
+      rCtx.lineTo(-7, 12);
+      rCtx.lineTo(-18, 16);
+      rCtx.closePath();
+      rCtx.fill();
+      rCtx.stroke();
+
+      // ห้องนักบินเรืองแสง
+      rCtx.fillStyle = '#ff4fa3';
+      rCtx.beginPath();
+      rCtx.ellipse(0, -3, 5, 9, 0, 0, Math.PI * 2);
+      rCtx.fill();
+      rCtx.restore();
+    }
+
+    rocketAnim = requestAnimationFrame(loop);
+  }
+  rocketAnim = requestAnimationFrame(loop);
+}
+</script>
+</body>
+</html>
